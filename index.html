@@ -121,21 +121,6 @@
             border-radius: 0.5rem;
         }
         
-        /* Carousel */
-        .carousel {
-            overflow: hidden;
-            position: relative;
-        }
-        
-        .carousel-inner {
-            display: flex;
-            transition: transform 0.5s ease;
-        }
-        
-        .carousel-item {
-            flex: 0 0 100%;
-        }
-        
         /* Accessibility widget */
         .accessibility-widget {
             position: fixed;
@@ -183,10 +168,6 @@
         
         .high-contrast {
             filter: contrast(1.5);
-        }
-        
-        .invert-colors {
-            filter: invert(1);
         }
         
         .grayscale {
@@ -387,66 +368,6 @@
                 </div>
             </div>
         </div>
-        
-        <script>
-            // Set default date to today + 30 days
-            document.addEventListener('DOMContentLoaded', function() {
-                const today = new Date();
-                
-                // Set default date to 30 days from today
-                const defaultDate = new Date(today);
-                defaultDate.setDate(today.getDate() + 30);
-                const formattedDefaultDate = defaultDate.toISOString().split('T')[0];
-                
-                // Get date input element
-                const dateInput = document.getElementById('check-date');
-                dateInput.value = formattedDefaultDate;
-                
-                // Set min date to today
-                const formattedToday = today.toISOString().split('T')[0];
-                dateInput.min = formattedToday;
-                
-                // Set max date to 4 months from today
-                const maxDate = new Date(today);
-                maxDate.setMonth(today.getMonth() + 4);
-                const formattedMaxDate = maxDate.toISOString().split('T')[0];
-                dateInput.max = formattedMaxDate;
-            });
-            
-            function calculateCheck() {
-                // Get values
-                const checkAmount = parseFloat(document.getElementById('check-amount').value) || 0;
-                const checkDate = new Date(document.getElementById('check-date').value);
-                const today = new Date();
-                
-                // Add 4 days to the check date
-                const adjustedCheckDate = new Date(checkDate);
-                adjustedCheckDate.setDate(adjustedCheckDate.getDate() + 4);
-                
-                // Calculate days until check date
-                const timeDiff = adjustedCheckDate.getTime() - today.getTime();
-                const daysDiff = Math.ceil(timeDiff / (1000 * 3600 * 24));
-                
-                // Calculate months (approximate)
-                const monthsDiff = Math.max(daysDiff / 30, 0.1); // Minimum 0.1 months (3 days)
-                
-                // Calculate commission (2% per month + fixed 100 NIS check fee)
-                const monthlyRate = 0.02;
-                const percentageCommission = checkAmount * monthlyRate * monthsDiff;
-                const fixedFee = 100; // Fixed 100 NIS fee per check
-                const totalCommission = percentageCommission + fixedFee;
-                
-                // Calculate net amount
-                const netAmount = checkAmount - totalCommission;
-                
-                // Update results
-                document.getElementById('commission-result').textContent = '₪' + totalCommission.toLocaleString(undefined, {maximumFractionDigits: 0});
-                document.getElementById('net-amount-result').textContent = '₪' + netAmount.toLocaleString(undefined, {maximumFractionDigits: 0});
-                document.getElementById('days-saved-result').textContent = daysDiff > 0 ? daysDiff : 0;
-                
-                return false;
-            }
-        </script>
     </section>
 
     <!-- Process Section -->
@@ -491,4 +412,40 @@
         <div class="container mx-auto px-4">
             <div class="text-center mb-12 animate__animated animate__fadeIn">
                 <span class="inline-block bg-blue-100 text-blue-800 text-sm font-semibold py-1 px-3 rounded-full mb-2">יתרונות</span>
-                <h2 class="text-3xl font-bold text-blue-
+                <h2 class="text-3xl font-bold text-blue-900 mb-4">למה לבחור בנו?</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">אנו מציעים את הפתרונות המתקדמים ביותר בתחום ניכיון השיקים עם שירות אישי ומקצועי</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="feature-card bg-gray-50 p-8 rounded-lg shadow-md transition-all">
+                    <div class="text-blue-900 mb-4">
+                        <i class="fas fa-clock text-4xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">מהירות ביצוע</h3>
+                    <p class="text-gray-600">ניכיון שיקים בתוך זמן קצר, ללא עיכובים מיותרים. אנו מבינים את חשיבות הזמן לעסק שלך.</p>
+                </div>
+                
+                <div class="feature-card bg-gray-50 p-8 rounded-lg shadow-md transition-all">
+                    <div class="text-blue-900 mb-4">
+                        <i class="fas fa-percentage text-4xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">עמלות תחרותיות</h3>
+                    <p class="text-gray-600">מחירים הוגנים ושקופים ללא הפתעות. אנו מציעים את העמלות התחרותיות ביותר בשוק.</p>
+                </div>
+                
+                <div class="feature-card bg-gray-50 p-8 rounded-lg shadow-md transition-all">
+                    <div class="text-blue-900 mb-4">
+                        <i class="fas fa-user-shield text-4xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">אבטחה מלאה</h3>
+                    <p class="text-gray-600">כל השיקים מטופלים בצורה מאובטחת עם הגנה מלאה על המידע והכספים שלך.</p>
+                </div>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mt-8">
+                <div class="feature-card bg-gray-50 p-8 rounded-lg shadow-md transition-all">
+                    <div class="text-blue-900 mb-4">
+                        <i class="fas fa-handshake text-4xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">שירות אישי</h3>
+                    <p class="text-gray-600">כל לקוח מקבל יחס אישי ופתרון מותאם לצרכים הספציפיים שלו.
