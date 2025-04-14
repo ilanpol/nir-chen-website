@@ -150,7 +150,7 @@ function calculateCheck() {
     const today = new Date();
     
     // Validate inputs
-    if (isNaN(checkAmount) || !checkDate) {
+    if (isNaN(checkAmount) || !checkDate || isNaN(checkDate.getTime())) {
         alert('נא להזין סכום ותאריך תקינים');
         return;
     }
@@ -183,6 +183,14 @@ function calculateCheck() {
     document.getElementById('commission-result').textContent = '₪' + totalCommission.toFixed(0);
     document.getElementById('net-amount-result').textContent = '₪' + netAmount.toFixed(0);
     document.getElementById('days-saved-result').textContent = daysDifference;
+    
+    console.log('חישוב בוצע:', {
+        סכום: checkAmount,
+        תאריך: checkDate,
+        'ימי המתנה': daysDifference,
+        עמלה: totalCommission,
+        'סכום נטו': netAmount
+    });
 }
 
 // Save accessibility settings to localStorage
