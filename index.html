@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
     <link rel="stylesheet" href="styles.css">
+    <script src="scripts.js" defer></script>
 </head>
 <body class="rtl-support">
     <!-- License Information -->
@@ -176,7 +177,7 @@
                             <input type="date" id="check-date" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
                         </div>
                         
-                        <button id="calculate-button" class="bg-blue-900 text-white font-bold py-3 px-6 rounded-lg hover:bg-blue-800 transition-all w-full">חשב</button>
+                        <button id="calculate-button" onclick="calculateCheck()" class="bg-blue-900 text-white font-bold py-3 px-6 rounded-lg hover:bg-blue-800 transition-all w-full">חשב</button>
                     </div>
                     
                     <div class="calculator-result p-6 flex flex-col justify-center">
@@ -415,8 +416,8 @@
                 </div>
                 
                 <div class="md:w-1/2 rounded-lg overflow-hidden shadow-md">
-                    <!-- כאן יהיה מפה מגוגל -->
-                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3381.4158110236394!2d34.952367411231866!3d32.09659742080401!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x151d35f8aaf46c9b%3A0x446bf0f69e61ce3!2z15TXnteQ15vXlCA4LCDXqNeQ16kg15TXoteZ158!5e0!3m2!1siw!2sil!4v1713207614975!5m2!1siw!2sil" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                    <!-- מפת גוגל עם iframe פשוט יותר -->
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d845.3545019871693!2d34.95322302290283!3d32.096598185226316!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x151d35f8b06e348d%3A0x4ecf0f1f029c5373!2z15TXnteQ15vXlCA4LCDXqNeQ16kg15TXoteZ158!5e0!3m2!1sen!2sil!4v1713208613988!5m2!1sen!2sil" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                 </div>
             </div>
         </div>
@@ -688,6 +689,75 @@
         </div>
     </div>
 
-    <script src="scripts.js"></script>
+    <!-- הוספת סקריפט ישירות בדף למקרה שהקובץ החיצוני לא נטען -->
+    <script>
+        // פונקציית חישוב המחשבון
+        function calculateCheck() {
+            const checkAmount = parseFloat(document.getElementById('check-amount').value);
+            const checkDate = new Date(document.getElementById('check-date').value);
+            const today = new Date();
+            
+            // וידוא תקינות הקלט
+            if (isNaN(checkAmount) || !checkDate || isNaN(checkDate.getTime())) {
+                alert('נא להזין סכום ותאריך תקינים');
+                return;
+            }
+            
+            if (checkDate <= today) {
+                alert('תאריך הפירעון חייב להיות בעתיד');
+                return;
+            }
+            
+            // הוספת 4 ימים כפי שמצוין בהערה
+            const adjustedCheckDate = new Date(checkDate);
+            adjustedCheckDate.setDate(adjustedCheckDate.getDate() + 4);
+            
+            // חישוב ההפרש בימים
+            const daysDifference = Math.ceil((adjustedCheckDate - today) / (1000 * 60 * 60 * 24));
+            
+            // חישוב ההפרש בחודשים (בקירוב)
+            const monthsDifference = daysDifference / 30;
+            
+            // חישוב העמלה: 2% לחודש + 100 ש"ח דמי טיפול
+            const ratePerMonth = 0.02; // 2%
+            const handlingFee = 100;
+            const interestAmount = checkAmount * ratePerMonth * monthsDifference;
+            const totalCommission = interestAmount + handlingFee;
+            
+            // חישוב הסכום נטו
+            const netAmount = checkAmount - totalCommission;
+            
+            // עדכון התוצאות
+            document.getElementById('commission-result').textContent = '₪' + totalCommission.toFixed(0);
+            document.getElementById('net-amount-result').textContent = '₪' + netAmount.toFixed(0);
+            document.getElementById('days-saved-result').textContent = daysDifference;
+            
+            console.log('חישוב בוצע:', {
+                סכום: checkAmount,
+                תאריך: checkDate,
+                'ימי המתנה': daysDifference,
+                עמלה: totalCommission,
+                'סכום נטו': netAmount
+            });
+        }
+
+        // קוד להפעלת התפריט הנייד
+        document.addEventListener('DOMContentLoaded', function() {
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+            
+            if (mobileMenuButton && mobileMenu) {
+                mobileMenuButton.addEventListener('click', function() {
+                    mobileMenu.classList.toggle('open');
+                });
+            }
+            
+            // הפעלת החישוב בלחיצה על כפתור החישוב
+            const calculateButton = document.getElementById('calculate-button');
+            if (calculateButton) {
+                calculateButton.addEventListener('click', calculateCheck);
+            }
+        });
+    </script>
 </body>
 </html>
