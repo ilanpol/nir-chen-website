@@ -1,4 +1,81 @@
-<!DOCTYPE html>
+<!-- הוספת סקריפט ישירות בדף למקרה שהקובץ החיצוני לא נטען -->
+    <script>
+        // פונקציית חישוב המחשבון
+        function calculateCheck() {
+            const checkAmount = parseFloat(document.getElementById('check-amount').value);
+            const checkDate = new Date(document.getElementById('check-date').value);
+            const today = new Date();
+            
+            // וידוא תקינות הקלט
+            if (isNaN(checkAmount) || !checkDate || isNaN(checkDate.getTime())) {
+                alert('נא להזין סכום ותאריך תקינים');
+                return;
+            }
+            
+            if (checkDate <= today) {
+                alert('תאריך הפירעון חייב להיות בעתיד');
+                return;
+            }
+            
+            // הוספת 4 ימים כפי שמצוין בהערה
+            const adjustedCheckDate = new Date(checkDate);
+            adjustedCheckDate.setDate(adjustedCheckDate.getDate() + 4);
+            
+            // חישוב ההפרש בימים
+            const daysDifference = Math.ceil((adjustedCheckDate - today) / (1000 * 60 * 60 * 24));
+            
+            // חישוב ההפרש בחודשים (בקירוב)
+            const monthsDifference = daysDifference / 30;
+            
+            // חישוב העמלה: 2% לחודש + 100 ש"ח דמי טיפול
+            const ratePerMonth = 0.02; // 2%
+            const handlingFee = 100;
+            const interestAmount = checkAmount * ratePerMonth * monthsDifference;
+            const totalCommission = interestAmount + handlingFee;
+            
+            // חישוב הסכום נטו
+            const netAmount = checkAmount - totalCommission;
+            
+            // עדכון התוצאות
+            document.getElementById('commission-result').textContent = '₪' + totalCommission.toFixed(0);
+            document.getElementById('net-amount-result').textContent = '₪' + netAmount.toFixed(0);
+            document.getElementById('days-saved-result').textContent = daysDifference;
+            
+            console.log('חישוב בוצע:', {
+                סכום: checkAmount,
+                תאריך: checkDate,
+                'ימי המתנה': daysDifference,
+                עמלה: totalCommission,
+                'סכום נטו': netAmount
+            });
+        }
+
+        // קוד להפעלת התפריט הנייד ופתיחת השאלות הנפוצות
+        document.addEventListener('DOMContentLoaded', function() {
+            // תפריט נייד
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+            
+            if (mobileMenuButton && mobileMenu) {
+                mobileMenuButton.addEventListener('click', function() {
+                    mobileMenu.classList.toggle('open');
+                });
+            }
+            
+            // הפעלת החישוב בלחיצה על כפתור החישוב
+            const calculateButton = document.getElementById('calculate-button');
+            if (calculateButton) {
+                calculateButton.addEventListener('click', calculateCheck);
+            }
+            
+            // טיפול בשאלות הנפוצות
+            const faqQuestions = document.querySelectorAll('.faq-question');
+            faqQuestions.forEach(question => {
+                const answer = question.nextElementSibling;
+                const icon = question.querySelector('.faq-icon');
+                
+                // עדכון אייקון לפי מצב פתיחה
+                if (icon && !<!DOCTYPE html>
 <html lang="he" dir="rtl">
 <head>
     <meta charset="UTF-8">
@@ -515,7 +592,7 @@
                         <h3 class="text-lg font-bold text-blue-900">מה זה ניכיון שיקים?</h3>
                         <i class="fas fa-chevron-down text-blue-900 faq-icon"></i>
                     </div>
-                    <div class="faq-answer mt-4 hidden">
+                    <div class="faq-answer mt-4">
                         <p class="text-gray-600">ניכיון שיקים הוא שירות פיננסי המאפשר לעסקים ולעצמאיים לקבל מזומן באופן מיידי תמורת שיקים דחויים. במקום להמתין למועד הפירעון של השיק, ניתן להמיר אותו לכסף מזומן מיידי בניכוי עמלה מסוימת. למעשה, זהו תהליך של מכירת השיק הדחוי לחברת ניכיון תמורת סכום נמוך מעט מערכו הנקוב, כך שהלקוח מקבל כסף מיידי ואילו חברת הניכיון מרוויחה את ההפרש כאשר השיק נפרע בתאריך המקורי שלו.</p>
                     </div>
                 </div>
@@ -525,7 +602,7 @@
                         <h3 class="text-lg font-bold text-blue-900">כמה עולה ניכיון שיק?</h3>
                         <i class="fas fa-chevron-down text-blue-900 faq-icon"></i>
                     </div>
-                    <div class="faq-answer mt-4 hidden">
+                    <div class="faq-answer mt-4">
                         <p class="text-gray-600">העמלה על ניכיון שיק משתנה בהתאם למספר פרמטרים: סכום השיק, מועד הפירעון, איכות המושך (חוסנו הפיננסי), וותק הלקוח אצלנו וההיסטוריה העסקית שלו. באופן כללי, העמלה נעה בין 1.5% ל-3% לחודש בתוספת עמלת טיפול חד פעמית של כ-100 ש"ח. לדוגמה, עבור שיק של 10,000 ש"ח לתקופה של חודש, העמלה תהיה בסביבות 250-350 ש"ח. ככל שתקופת הדחייה של השיק ארוכה יותר, כך תגדל העמלה. לקבלת הצעת מחיר מדויקת המותאמת ספציפית לשיק שלך, מומלץ ליצור איתנו קשר.</p>
                     </div>
                 </div>
@@ -535,7 +612,7 @@
                         <h3 class="text-lg font-bold text-blue-900">מה המסמכים הנדרשים לניכיון שיקים?</h3>
                         <i class="fas fa-chevron-down text-blue-900 faq-icon"></i>
                     </div>
-                    <div class="faq-answer mt-4 hidden">
+                    <div class="faq-answer mt-4">
                         <p class="text-gray-600">המסמכים הנדרשים לביצוע ניכיון שיקים כוללים:</p>
                         <ul class="list-disc mr-6 mt-2 space-y-1 text-gray-600">
                             <li>תעודת זהות של בעל העסק/החברה</li>
@@ -554,7 +631,7 @@
                         <h3 class="text-lg font-bold text-blue-900">כמה זמן לוקח תהליך ניכיון שיקים?</h3>
                         <i class="fas fa-chevron-down text-blue-900 faq-icon"></i>
                     </div>
-                    <div class="faq-answer mt-4 hidden">
+                    <div class="faq-answer mt-4">
                         <p class="text-gray-600">תהליך ניכיון השיקים אצלנו מתוכנן להיות מהיר ויעיל ככל האפשר. עבור רוב הלקוחות, התהליך מתחיל ומסתיים באותו יום עסקים, ובמקרים רבים אף תוך שעות ספורות. הזמן המדויק תלוי במספר גורמים:</p>
                         <ul class="list-disc mr-6 mt-2 space-y-1 text-gray-600">
                             <li>אם מדובר בלקוח חדש, תהליך האישור הראשוני עשוי לקחת 1-2 שעות נוספות לצורך בדיקות.</li>
@@ -570,7 +647,7 @@
                         <h3 class="text-lg font-bold text-blue-900">האם ניתן לנכות שיקים של אנשים פרטיים?</h3>
                         <i class="fas fa-chevron-down text-blue-900 faq-icon"></i>
                     </div>
-                    <div class="faq-answer mt-4 hidden">
+                    <div class="faq-answer mt-4">
                         <p class="text-gray-600">כן, אנו מנכים גם שיקים של אנשים פרטיים (שיקים אישיים), אך התהליך והתנאים שונים במקצת מניכיון שיקים עסקיים:</p>
                         <ul class="list-disc mr-6 mt-2 space-y-1 text-gray-600">
                             <li>תהליך הבדיקה והאישור מקיף ומעמיק יותר, כיוון שנדרשת בדיקת אמינות פיננסית של המושך הפרטי.</li>
