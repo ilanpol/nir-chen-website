@@ -509,7 +509,7 @@
             
             <div class="max-w-4xl mx-auto flex flex-col md:flex-row gap-8">
                 <div class="md:w-1/2">
-                    <form id="contact-form" class="bg-gray-50 p-8 rounded-lg shadow-md" action="https://formspree.io/f/mldjzqwz" method="POST" onsubmit="return submitForm(this);">
+                    <form id="contact-form" class="bg-gray-50 p-8 rounded-lg shadow-md" action="https://formspree.io/f/mldjzqwz" method="POST" onsubmit="return submitForm(this);" enctype="multipart/form-data">
                         <div class="mb-6">
                             <label for="name" class="block text-gray-700 font-medium mb-2">שם מלא</label>
                             <input type="text" id="name" name="name" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="הזן את שמך המלא" required>
@@ -528,6 +528,12 @@
                         <div class="mb-6">
                             <label for="message" class="block text-gray-700 font-medium mb-2">הודעה</label>
                             <textarea id="message" name="message" rows="4" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="כתוב את הודעתך כאן..." required></textarea>
+                        </div>
+                        
+                        <div class="mb-6">
+                            <label for="attachment" class="block text-gray-700 font-medium mb-2">צרף קובץ (אופציונלי)</label>
+                            <input type="file" id="attachment" name="attachment" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                            <p class="text-xs text-gray-500 mt-1">ניתן להעלות תמונות, מסמכים PDF או קבצי Word עד 10MB</p>
                         </div>
                         
                         <input type="hidden" name="_subject" value="פנייה חדשה מהאתר">
