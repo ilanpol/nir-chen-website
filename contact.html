@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>צור קשר</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+      direction: rtl;
+      text-align: center;
+      padding: 50px;
+    }
+    form {
+      background: white;
+      padding: 20px;
+      max-width: 400px;
+      margin: auto;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    input, textarea {
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      font-size: 1rem;
+    }
+    button {
+      background-color: #e63946;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 5px;
+      font-size: 1rem;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #d62828;
+    }
+  </style>
+</head>
+<body>
+  <h1>טופס יצירת קשר</h1>
+  <form action="https://formspree.io/f/mldjzqwz" method="POST">
+    <input type="text" name="name" placeholder="שם מלא" required>
+    <input type="email" name="email" placeholder="אימייל" required>
+    <textarea name="message" placeholder="ההודעה שלך..." rows="5" required></textarea>
+    <button type="submit">שלח</button>
+  </form>
+</body>
+</html>
