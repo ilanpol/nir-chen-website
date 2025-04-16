@@ -1,66 +1,34 @@
 <!DOCTYPE html>
 <html lang="he" dir="rtl">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
   <title>צור קשר</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
   <style>
-    body {
-      font-family: Arial, sans-serif;
-      padding: 30px;
-      background-color: #f4f4f4;
-      text-align: right;
-    }
-    h1 {
-      color: #333;
-    }
-    form {
-      background: #fff;
-      padding: 20px;
-      border-radius: 10px;
-      max-width: 500px;
-      margin: auto;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-    }
-    label {
-      display: block;
-      margin-top: 15px;
-    }
-    input, textarea {
-      width: 100%;
-      padding: 10px;
-      margin-top: 5px;
-      border-radius: 5px;
-      border: 1px solid #ccc;
-    }
-    button {
-      margin-top: 20px;
-      padding: 10px 20px;
-      background-color: #0088cc;
-      color: white;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-    }
-    button:hover {
-      background-color: #005f99;
-    }
+    body { font-family: Arial; direction: rtl; padding: 20px; background-color: #f9f9f9; }
+    form { max-width: 500px; margin: auto; background: white; padding: 20px; border-radius: 10px; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
+    input, textarea { width: 100%; padding: 10px; margin-top: 10px; border: 1px solid #ccc; border-radius: 5px; }
+    button { background: #0d47a1; color: white; border: none; padding: 12px; margin-top: 15px; border-radius: 5px; cursor: pointer; }
+    button:hover { background: #1565c0; }
   </style>
 </head>
 <body>
-  <h1>צור קשר</h1>
+
+  <h2>צור קשר</h2>
   <form action="https://formspree.io/f/mldjzqwz" method="POST">
-    <label for="name">שם מלא:</label>
-    <input type="text" id="name" name="name" required>
+    <label>שם מלא</label>
+    <input type="text" name="name" placeholder="הזן את שמך המלא" required>
 
-    <label for="email">אימייל:</label>
-    <input type="email" id="email" name="_replyto" required>
+    <label>טלפון</label>
+    <input type="text" name="phone" placeholder="הזן את מספר הטלפון שלך">
 
-    <label for="message">הודעה:</label>
-    <textarea id="message" name="message" rows="6" required></textarea>
+    <label>דוא"ל</label>
+    <input type="email" name="email" placeholder="הזן את כתובת הדוא"ל" required>
+
+    <label>הודעה</label>
+    <textarea name="message" placeholder="כתוב את הודעתך כאן..." rows="5" required></textarea>
 
     <button type="submit">שלח</button>
   </form>
+
 </body>
 </html>
