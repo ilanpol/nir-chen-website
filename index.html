@@ -161,8 +161,12 @@
     </nav>
 
     <!-- Hero Section -->
-    <section id="home" class="hero-gradient text-white py-20">
-        <div class="container mx-auto px-4 flex flex-col md:flex-row items-center">
+    <section id="home" class="hero-gradient text-white py-20 relative">
+        <!-- תמונת רקע מעומעמת -->
+        <div class="absolute inset-0 z-0 opacity-20">
+            <img src="construction-site.jpg" alt="אתר בניה ברקע" class="object-cover w-full h-full">
+        </div>
+        <div class="container mx-auto px-4 flex flex-col md:flex-row items-center relative z-10">
             <div class="md:w-1/2 mb-10 md:mb-0 animate__animated animate__fadeInRight">
             <div class="text-center mb-12 animate__animated animate__fadeInRight">
                 <span class="inline-block bg-blue-800 text-white text-sm font-semibold py-1 px-3 rounded-full mb-4">המובילים בתחום ניכיון השיקים</span>
@@ -198,8 +202,8 @@
                     </div>
                 </div>
             </div>
-            <div class="md:w-1/2 flex justify-center animate__animated animate__fadeInLeft">
-                <img src="https://ilanpol.github.io/nir-chen-website/construction-site.jpg" alt="אתר בניה - קבוצת חן למימון" class="rounded-lg shadow-xl max-w-full h-auto">
+            <div class="md:w-1/2 flex justify-center">
+                <!-- השארתי את הכותרת בחלק השמאלי במקום התמונה -->
             </div>
         </div>
     </section>
@@ -422,12 +426,16 @@
     </section>
 
     <!-- About Section -->
-    <section id="about" class="py-16 bg-white">
-        <div class="container mx-auto px-4">
+    <section id="about" class="py-16 bg-white relative">
+        <!-- תמונת רקע של אתר בנייה נוסף -->
+        <div class="absolute inset-0 z-0 opacity-10">
+            <img src="construction-site2.jpg" alt="אתר בניה נוסף" class="object-cover w-full h-full">
+        </div>
+        <div class="container mx-auto px-4 relative z-10">
             <div class="text-center mb-12">
                 <span class="inline-block bg-blue-100 text-blue-800 text-sm font-semibold py-1 px-3 rounded-full mb-2">אודות</span>
                 <h2 class="text-3xl font-bold text-blue-900 mb-4">מי אנחנו</h2>
-                <p class="text-gray-600 max-w-2xl mx-auto">ניר חן יזמות בע"מ הוקמה בשנת 2010 במטרה לספק שירותי ניכיון שיקים מקצועיים לעסקים ולעצמאיים</p>
+                <p class="text-gray-600 max-w-2xl mx-auto">קבוצת חן למימון הוקמה במטרה לספק שירותי ניכיון שיקים מקצועיים לעסקים ולעצמאיים</p>
             </div>
             
             <div class="flex flex-col md:flex-row items-center gap-10">
