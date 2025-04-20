@@ -432,6 +432,69 @@ document.addEventListener('DOMContentLoaded', function() {
                     }
                 });
             }
+            <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // תפריט נגישות פשוט
+        const accessibilityWidget = document.getElementById('accessibility-simple-widget');
+        const accessibilityMenu = document.getElementById('accessibility-simple-menu');
+        
+        if (accessibilityWidget && accessibilityMenu) {
+            // אירוע לחיצה על כפתור הנגישות
+            accessibilityWidget.addEventListener('click', function() {
+                accessibilityMenu.classList.toggle('show');
+            });
+            
+            // סגירת התפריט בלחיצה מחוץ לתפריט
+            document.addEventListener('click', function(event) {
+                if (!accessibilityMenu.contains(event.target) && 
+                    !accessibilityWidget.contains(event.target) &&
+                    accessibilityMenu.classList.contains('show')) {
+                    accessibilityMenu.classList.remove('show');
+                }
+            });
+            
+            // הגדלת גופן
+            const fontLarge = document.getElementById('simple-font-large');
+            if (fontLarge) {
+                fontLarge.addEventListener('change', function() {
+                    document.body.classList.toggle('large-font', this.checked);
+                });
+            }
+            
+            // ניגודיות גבוהה
+            const highContrast = document.getElementById('simple-high-contrast');
+            if (highContrast) {
+                highContrast.addEventListener('change', function() {
+                    document.body.classList.toggle('high-contrast', this.checked);
+                });
+            }
+            
+            // הדגשת קישורים
+            const linksUnderline = document.getElementById('simple-links-underline');
+            if (linksUnderline) {
+                linksUnderline.addEventListener('change', function() {
+                    document.body.classList.toggle('links-underline', this.checked);
+                });
+            }
+            
+            // איפוס הגדרות
+            const resetButton = document.getElementById('simple-reset-accessibility');
+            if (resetButton) {
+                resetButton.addEventListener('click', function() {
+                    // איפוס תצוגת האתר
+                    document.body.classList.remove('large-font', 'high-contrast', 'links-underline');
+                    
+                    // איפוס checkboxes
+                    if (fontLarge) fontLarge.checked = false;
+                    if (highContrast) highContrast.checked = false;
+                    if (linksUnderline) linksUnderline.checked = false;
+                    
+                    alert('הגדרות הנגישות אופסו בהצלחה');
+                });
+            }
+        }
+    });
+</script>
         });
     });
 </script>
