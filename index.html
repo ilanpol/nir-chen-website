@@ -1,292 +1,147 @@
-<!DOCTYPE html>
-<html lang="he" dir="rtl">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="קבוצת חן למימון - החברה המובילה לניכיון שיקים מקצועי, מהיר ואמין לעסקים ועצמאיים. תנאים מצוינים, אישור מהיר, ליווי מקצועי.">
-    <meta name="keywords" content="ניכיון שיקים, ניכיון שיקים דחויים, ניכיון שיקים לעסקים, ניכיון שיקים לעצמאיים, קבוצת חן למימון, מזומן תמורת שיקים">
-    <title>קבוצת חן למימון - ניכיון שיקים מקצועי</title>
-    <!-- Favicon -->
-    <link rel="icon" href="https://via.placeholder.com/32" type="image/png">
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
-    <link rel="stylesheet" href="styles.css">
-    <script src="scripts.js" defer></script>
-    <style>
-        /* סגנונות בסיסיים לתפריט הנגישות */
-        .accessibility-widget {
-            position: fixed;
-            bottom: 20px;
-            left: 20px;
-            width: 50px;
-            height: 50px;
-            background-color: #0c4a6e;
-            color: white;
-            border-radius: 50%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            cursor: pointer;
-            z-index: 998;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-            transition: all 0.3s ease;
-        }
-
-        .accessibility-widget:hover {
-            background-color: #075985;
-        }
-
-        .accessibility-menu {
-            position: fixed;
-            bottom: 80px;
-            left: 20px;
-            width: 250px;
-            background-color: white;
-            border-radius: 10px;
-            padding: 15px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-            z-index: 999;
-            display: none;
-            transition: all 0.3s ease;
-        }
-
-        .accessibility-menu.show {
-            display: block;
-        }
-
-        /* סגנונות עבור אפשרויות הנגישות */
-        .large-font {
-            font-size: 120% !important;
-        }
-
-        .large-font h1, .large-font h2, .large-font h3, .large-font h4 {
-            font-size: 130% !important;
-        }
-
-        .high-contrast {
-            filter: contrast(150%);
-            background-color: black !important;
-            color: white !important;
-        }
-
-        .high-contrast a, .high-contrast button, .high-contrast h1, 
-        .high-contrast h2, .high-contrast h3, .high-contrast h4 {
-            color: yellow !important;
-        }
-
-        .grayscale {
-            filter: grayscale(100%);
-        }
-
-        .links-underline a {
-            text-decoration: underline !important;
-            text-decoration-thickness: 2px !important;
-        }
-
-        /* סגנונות נוספים מהאתר המקורי */
-        .whatsapp-float {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            background-color: #25d366;
-            color: white;
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            text-align: center;
-            font-size: 30px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            z-index: 998;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-            transition: all 0.3s;
-        }
-
-        .whatsapp-float:hover {
-            background-color: #128c7e;
-        }
-
-        .hero-gradient {
-            background: linear-gradient(135deg, #0c4a6e 0%, #075985 100%);
-        }
-
-        .mobile-menu {
-            display: none;
-        }
-
-        .mobile-menu.open {
-            display: block;
-        }
-
-        .feature-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-        }
-
-        .calculator-section {
-            background: white;
-            border-radius: 12px;
-            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
-        }
-
-        .calculator-result {
-            background: #f8fafc;
-            border-radius: 8px;
-        }
-
-        .hero-company-name {
-            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3);
-        }
-
-        .hero-divider {
-            height: 3px;
-            width: 80px;
-            background-color: white;
-            margin: 0 auto 10px;
-        }
-
-        .hero-title-shadow {
-            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3);
-        }
-
-        .pulse-animation {
-            animation: pulse 2s infinite;
-        }
-
-        @keyframes pulse {
-            0% {
-                box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.7);
-            }
-            70% {
-                box-shadow: 0 0 0 10px rgba(255, 255, 255, 0);
-            }
-            100% {
-                box-shadow: 0 0 0 0 rgba(255, 255, 255, 0);
-            }
-        }
-
-        .rtl-support {
-            direction: rtl;
-            text-align: right;
-        }
-    </style>
-</head>
-<body class="rtl-support">
-    <!-- License Information -->
-    <div class="bg-blue-50 py-3 border-y border-blue-100">
-        <div class="container mx-auto px-4 text-center">
-            <div class="flex items-center justify-center space-x-2 space-x-reverse">
-                <i class="fas fa-certificate text-blue-900"></i>
-                <p class="text-blue-900 font-medium">אנו פועלים עם רישיון מורחב למתן אשראי שניתן ע"י רשות שוק ההון מס' 54604</p>
+<div class="feature-card bg-gray-50 p-8 rounded-lg shadow-md transition-all">
+                    <div class="text-blue-900 mb-4">
+                        <i class="fas fa-handshake text-4xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">שירות אישי</h3>
+                    <p class="text-gray-600">כל לקוח מקבל יחס אישי ופתרון מותאם לצרכים הספציפיים שלו.</p>
+                </div>
+                
+                <div class="feature-card bg-gray-50 p-8 rounded-lg shadow-md transition-all">
+                    <div class="text-blue-900 mb-4">
+                        <i class="fas fa-certificate text-4xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">רישיון מורחב</h3>
+                    <p class="text-gray-600">אנו פועלים עם רישיון מורחב למתן אשראי מטעם רשות שוק ההון, מה שמבטיח אמינות ובטחון.</p>
+                </div>
             </div>
         </div>
-    </div>
+    </section>
 
-    <!-- Top Bar -->
-    <div class="bg-blue-900 text-white py-2 px-4">
-        <div class="container mx-auto flex justify-between items-center">
-            <div class="flex items-center space-x-4 space-x-reverse">
-                <a href="tel:0505635020" class="text-sm hover:text-blue-200"><i class="fas fa-phone mr-2"></i> 050-5635020</a>
-                <a href="tel:036047377" class="text-sm hover:text-blue-200"><i class="fas fa-phone mr-2"></i> 03-6047377</a>
-                <a href="mailto:nirchen2010@gmail.com" class="text-sm hover:text-blue-200"><i class="fas fa-envelope mr-2"></i> nirchen2010@gmail.com</a>
-            </div>
-            <div class="flex items-center space-x-4 space-x-reverse">
-                <a href="#" class="text-sm hover:text-blue-200"><i class="fab fa-facebook-f"></i></a>
-                <a href="#" class="text-sm hover:text-blue-200"><i class="fab fa-linkedin-in"></i></a>
-                <a href="https://api.whatsapp.com/send?phone=972505635020" target="_blank" class="text-sm hover:text-blue-200"><i class="fab fa-whatsapp"></i></a>
-            </div>
-        </div>
-    </div>
-
-    <!-- Navigation -->
-    <nav class="bg-white shadow-md sticky top-0 z-50">
-        <div class="container mx-auto px-2 sm:px-4 py-3 flex justify-between items-center nav-container">
-            <div class="flex items-center flex-shrink-0 logo-container">
-                <!-- לוגו סולידי במקום תמונה -->
-                <div class="h-12 w-12 bg-blue-900 rounded-lg flex items-center justify-center text-white font-bold text-xl mr-2 sm:mr-3 flex-shrink-0">
-                    ק"ח
-                </div>
-                <div>
-                    <h1 class="text-lg sm:text-xl font-bold text-blue-900 whitespace-nowrap">קבוצת חן למימון</h1>
-                    <p class="text-xs text-gray-600">ניכיון שיקים מקצועי</p>
-                </div>
+    <!-- Services Section -->
+    <section id="services" class="py-16 bg-blue-50">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <span class="inline-block bg-blue-100 text-blue-800 text-sm font-semibold py-1 px-3 rounded-full mb-2">שירותים</span>
+                <h2 class="text-3xl font-bold text-blue-900 mb-4">השירותים שלנו</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">אנו מציעים מגוון שירותים פיננסיים לעסקים ולעצמאיים</p>
             </div>
             
-            <div class="hidden md:flex space-x-8 space-x-reverse">
-                <a href="#home" class="text-blue-900 font-medium hover:text-blue-700 transition-all">בית</a>
-                <a href="#services" class="text-gray-700 hover:text-blue-700 transition-all">שירותים</a>
-                <a href="#calculator" class="text-gray-700 hover:text-blue-700 transition-all">מחשבון</a>
-                <a href="#about" class="text-gray-700 hover:text-blue-700 transition-all">אודות</a>
-                <a href="#location" class="text-gray-700 hover:text-blue-700 transition-all">מיקום</a>
-                <a href="#contact" class="text-gray-700 hover:text-blue-700 transition-all">יצירת קשר</a>
-                <a href="#faq" class="text-gray-700 hover:text-blue-700 transition-all">שאלות נפוצות</a>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="bg-white p-8 rounded-lg shadow-md">
+                    <div class="text-blue-900 mb-4">
+                        <i class="fas fa-money-check-alt text-4xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">ניכיון שיקים</h3>
+                    <p class="text-gray-600 mb-4">המרת שיקים דחויים למזומן באופן מיידי, תוך שמירה על העמלה הנמוכה ביותר האפשרית.</p>
+                    <a href="#contact" class="text-blue-800 font-medium hover:text-blue-600">פרטים נוספים <i class="fas fa-chevron-left mr-1"></i></a>
+                </div>
+                
+                <div class="bg-white p-8 rounded-lg shadow-md">
+                    <div class="text-blue-900 mb-4">
+                        <i class="fas fa-credit-card text-4xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">מימון לעסקים</h3>
+                    <p class="text-gray-600 mb-4">פתרונות מימון מותאמים אישית לעסקים קטנים ובינוניים בתנאים נוחים ובאישור מהיר.</p>
+                    <a href="#contact" class="text-blue-800 font-medium hover:text-blue-600">פרטים נוספים <i class="fas fa-chevron-left mr-1"></i></a>
+                </div>
+                
+                <div class="bg-white p-8 rounded-lg shadow-md">
+                    <div class="text-blue-900 mb-4">
+                        <i class="fas fa-landmark text-4xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">הלוואות לעצמאיים</h3>
+                    <p class="text-gray-600 mb-4">הלוואות בתנאים מועדפים לעצמאיים ובעלי עסקים, ללא בירוקרטיה מיותרת.</p>
+                    <a href="#contact" class="text-blue-800 font-medium hover:text-blue-600">פרטים נוספים <i class="fas fa-chevron-left mr-1"></i></a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-16 bg-white relative">
+        <!-- תמונת רקע של אתר בנייה נוסף -->
+        <div class="absolute inset-0 z-0 opacity-10">
+            <img src="construction-site2.jpg" alt="אתר בניה נוסף" class="object-cover w-full h-full">
+        </div>
+        <div class="container mx-auto px-4 relative z-10">
+            <div class="text-center mb-12">
+                <span class="inline-block bg-blue-100 text-blue-800 text-sm font-semibold py-1 px-3 rounded-full mb-2">אודות</span>
+                <h2 class="text-3xl font-bold text-blue-900 mb-4">מי אנחנו</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">קבוצת חן למימון הוקמה במטרה לספק שירותי ניכיון שיקים מקצועיים לעסקים ולעצמאיים</p>
             </div>
             
-            <button id="mobile-menu-button" class="md:hidden text-gray-700 focus:outline-none">
-                <i class="fas fa-bars text-2xl"></i>
-            </button>
-        </div>
-        
-        <!-- Mobile Menu -->
-        <div id="mobile-menu" class="mobile-menu bg-white shadow-md absolute w-full md:hidden">
-            <div class="container mx-auto px-4 py-3 flex flex-col space-y-4">
-                <a href="#home" class="text-blue-900 font-medium py-2 border-b border-gray-100">בית</a>
-                <a href="#services" class="text-gray-700 hover:text-blue-700 py-2 border-b border-gray-100">שירותים</a>
-                <a href="#calculator" class="text-gray-700 hover:text-blue-700 py-2 border-b border-gray-100">מחשבון</a>
-                <a href="#about" class="text-gray-700 hover:text-blue-700 py-2 border-b border-gray-100">אודות</a>
-                <a href="#location" class="text-gray-700 hover:text-blue-700 py-2 border-b border-gray-100">מיקום</a>
-                <a href="#contact" class="text-gray-700 hover:text-blue-700 py-2 border-b border-gray-100">יצירת קשר</a>
-                <a href="#faq" class="text-gray-700 hover:text-blue-700 py-2">שאלות נפוצות</a>
-            </div>
-        </div>
-    </nav>
-
-    <!-- Hero Section -->
-    <section id="home" class="hero-gradient text-white py-20 relative">
-        <!-- תמונת רקע מעומעמת -->
-        <div class="absolute inset-0 z-0 opacity-20">
-            <img src="construction-site.jpg" alt="אתר בניה ברקע" class="object-cover w-full h-full">
-        </div>
-        <div class="container mx-auto px-4 flex flex-col md:flex-row items-center relative z-10">
-            <div class="md:w-1/2 mb-10 md:mb-0 animate__animated animate__fadeInRight">
-            <div class="text-center mb-12 animate__animated animate__fadeInRight">
-                <span class="inline-block bg-blue-800 text-white text-sm font-semibold py-1 px-3 rounded-full mb-4">המובילים בתחום ניכיון השיקים</span>
-                
-                <!-- שם החברה בגדול ובולט -->
-                <h1 class="text-3xl md:text-4xl lg:text-5xl font-bold mb-2 text-white hero-company-name hero-title-shadow">
-                    קבוצת חן למימון
-                </h1>
-                <div class="hero-divider"></div>
-                
-                <h2 class="text-3xl md:text-4xl font-bold mb-6">ניכיון שיקים מהיר ואמין</h2>
-                <p class="text-xl mb-8">הפתרון המהיר והמקצועי ביותר לניכיון שיקים לעסקים ולעצמאיים בישראל</p>
-                <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4 sm:space-x-reverse">
-                    <!-- כפתור עם שליחת מייל -->
-                    <a href="mailto:nirchen2010@gmail.com?subject=בקשת%20הצעת%20מחיר%20לניכיון%20שיקים&body=שלום,%0A%0Aאשמח%20לקבל%20הצעת%20מחיר%20לניכיון%20שיקים.%0A%0Aפרטי%20השיק:%0A-%20סכום:%20%0A-%20תאריך%20פירעון:%20%0A%0Aפרטי%20התקשרות:%0A-%20שם:%20%0A-%20טלפון:%20%0A%0Aבברכה," class="bg-white text-blue-900 font-bold py-3 px-6 rounded-lg text-center hover:bg-gray-100 transition-all pulse-animation">קבל הצעת מחיר</a>
-                    <a href="tel:0505635020" class="border-2 border-white text-white font-bold py-3 px-6 rounded-lg text-center hover:bg-white hover:text-blue-900 transition-all">
-                        <i class="fas fa-phone-alt ml-2"></i>התקשר עכשיו
-                    </a>
+            <div class="flex flex-col md:flex-row items-center gap-10">
+                <div class="md:w-1/2">
+                    <img src="https://via.placeholder.com/600x400" alt="ניר חן יזמות" class="rounded-lg shadow-lg max-w-full h-auto">
                 </div>
-                <div class="mt-8 flex items-center space-x-6 space-x-reverse">
-                    <div class="text-sm">
-                        <div class="flex items-center">
-                            <div class="text-yellow-400 mr-2">
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                            </div>
-                            <span>4.9/5</span>
+                <div class="md:w-1/2">
+                    <h3 class="text-2xl font-bold text-blue-900 mb-4">ניסיון וידע</h3>
+                    <p class="text-gray-600 mb-4">עם למעלה מ-12 שנות ניסיון בתחום ניכיון השיקים, אנו גאים להציע את השירות המקצועי והאמין ביותר בשוק. הצוות שלנו מורכב ממומחים בעלי ידע רב בתחום הפיננסי, המחויבים לספק לכם את הפתרון המותאם ביותר לצרכי העסק שלכם.</p>
+                    
+                    <h3 class="text-2xl font-bold text-blue-900 mb-4">מקצועיות ואמינות</h3>
+                    <p class="text-gray-600 mb-4">אנו פועלים בשקיפות מלאה מול לקוחותינו ומחויבים לספק שירות מקצועי ואמין. כל לקוח מקבל יחס אישי ומקצועי, החל משלב הייעוץ הראשוני ועד להשלמת התהליך ולאחריו.</p>
+                    
+                    <div class="flex items-center mt-6">
+                        <div class="mr-6">
+                            <img src="https://via.placeholder.com/80x80" alt="ניר חן" class="rounded-full">
                         </div>
-                        <p>מעל 500 לקוחות מרוצים</p>
+                        <div>
+                            <h4 class="text-xl font-bold text-blue-900">ניר חן</h4>
+                            <p class="text-gray-600">מנכ"ל ומייסד</p>
+                        </div>
                     </div>
                 </div>
             </div>
-            <div class="md:w-1/2 flex justify-center">
-                <!-- השארתי את הכותרת בחלק השמאלי במקום התמונה -->
+        </div>
+    </section>
+
+    <!-- Location Section -->
+    <section id="location" class="py-16 bg-blue-50">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <span class="inline-block bg-blue-100 text-blue-800 text-sm font-semibold py-1 px-3 rounded-full mb-2">מיקום</span>
+                <h2 class="text-3xl font-bold text-blue-900 mb-4">איפה אנחנו נמצאים</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">משרדנו ממוקם בראש העין בפארק תעשייה אפק</p>
+            </div>
+            
+            <div class="flex flex-col md:flex-row gap-8">
+                <div class="md:w-1/2 bg-white p-8 rounded-lg shadow-md">
+                    <h3 class="text-xl font-bold text-blue-900 mb-4">כתובת המשרד</h3>
+                    <div class="flex items-start mb-4">
+                        <i class="fas fa-map-marker-alt text-blue-900 mt-1 ml-3"></i>
+                        <div>
+                            <p class="text-gray-600">המלאכה 8, ראש העין</p>
+                            <p class="text-gray-600">פארק תעשייה אפק, קומה ב'</p>
+                        </div>
+                    </div>
+                    
+                    <h3 class="text-xl font-bold text-blue-900 mb-4">שעות פעילות</h3>
+                    <div class="flex items-start mb-4">
+                        <i class="fas fa-clock text-blue-900 mt-1 ml-3"></i>
+                        <div>
+                            <p class="text-gray-600">ימים א'-ה': 9:30-16:30</p>
+                        </div>
+                    </div>
+                    
+                    <h3 class="text-xl font-bold text-blue-900 mb-4">יצירת קשר</h3>
+                    <div class="flex items-start mb-4">
+                        <i class="fas fa-phone text-blue-900 mt-1 ml-3"></i>
+                        <div>
+                            <p class="text-gray-600">טלפון: 050-5635020</p>
+                            <p class="text-gray-600">משרד: 03-6047377</p>
+                        </div>
+                    </div>
+                    
+                    <div class="flex items-start">
+                        <i class="fas fa-envelope text-blue-900 mt-1 ml-3"></i>
+                        <p class="text-gray-600">דוא"ל: nirchen2010@gmail.com</p>
+                    </div>
+                </div>
+                
+                <div class="md:w-1/2 rounded-lg overflow-hidden shadow-md">
+                    <!-- מפת גוגל עם המיקום הנכון בראש העין -->
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3381.4226578442283!2d34.953071799999996!3d32.0963598!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x151d35f8ab8b46c9%3A0xf765a65a221e33fe!2z15TXnteQ15vXlCA4LCDXqNeQ16kg15TXoteZ158!5e0!3m2!1sil!2sil!4v1713209357486!5m2!1sil!2sil" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                </div>
             </div>
         </div>
     </section>
@@ -578,7 +433,7 @@
         </div>
     </div>
 
-    <!-- קוד JavaScript עבור פונקציונאליות כפתור הנגישות -->
+    <!-- JavaScript -->
     <script>
         // פונקציית חישוב המחשבון
         function calculateCheck() {
@@ -620,18 +475,11 @@
             document.getElementById('commission-result').textContent = '₪' + totalCommission.toFixed(0);
             document.getElementById('net-amount-result').textContent = '₪' + netAmount.toFixed(0);
             document.getElementById('days-saved-result').textContent = daysDifference;
-            
-            console.log('חישוב בוצע:', {
-                סכום: checkAmount,
-                תאריך: checkDate,
-                'ימי המתנה': daysDifference,
-                עמלה: totalCommission,
-                'סכום נטו': netAmount
-            });
         }
 
-        // קוד להפעלת התפריט הנייד
+        // קוד להפעלת התפריט הנייד והפונקציות השונות
         document.addEventListener('DOMContentLoaded', function() {
+            // תפריט נייד
             const mobileMenuButton = document.getElementById('mobile-menu-button');
             const mobileMenu = document.getElementById('mobile-menu');
             
@@ -641,13 +489,7 @@
                 });
             }
             
-            // הפעלת החישוב בלחיצה על כפתור החישוב
-            const calculateButton = document.getElementById('calculate-button');
-            if (calculateButton) {
-                calculateButton.addEventListener('click', calculateCheck);
-            }
-            
-            // טיפול בשאלות הנפוצות
+            // שאלות נפוצות
             const faqQuestions = document.querySelectorAll('.faq-question');
             faqQuestions.forEach(question => {
                 question.addEventListener('click', function() {
@@ -662,13 +504,17 @@
                 });
             });
             
-            // פונקציונליות כפתור הנגישות
+            // כפתור הנגישות
             const accessibilityWidget = document.querySelector('.accessibility-widget');
             const accessibilityMenu = document.getElementById('accessibility-menu');
             
             if (accessibilityWidget && accessibilityMenu) {
                 accessibilityWidget.addEventListener('click', function() {
-                    accessibilityMenu.classList.toggle('show');
+                    if (accessibilityMenu.style.display === 'block') {
+                        accessibilityMenu.style.display = 'none';
+                    } else {
+                        accessibilityMenu.style.display = 'block';
+                    }
                 });
             }
             
@@ -681,34 +527,339 @@
             // הגדלת גופן
             if (fontLarge) {
                 fontLarge.addEventListener('change', function() {
-                    document.body.classList.toggle('large-font', this.checked);
+                    if (this.checked) {
+                        document.body.classList.add('large-font');
+                    } else {
+                        document.body.classList.remove('large-font');
+                    }
                 });
             }
             
             // ניגודיות גבוהה
             if (highContrast) {
                 highContrast.addEventListener('change', function() {
-                    document.body.classList.toggle('high-contrast', this.checked);
+                    if (this.checked) {
+                        document.body.classList.add('high-contrast');
+                    } else {
+                        document.body.classList.remove('high-contrast');
+                    }
                 });
             }
             
             // גווני אפור
             if (grayscale) {
                 grayscale.addEventListener('change', function() {
-                    document.body.classList.toggle('grayscale', this.checked);
+                    if (this.checked) {
+                        document.body.classList.add('grayscale');
+                    } else {
+                        document.body.classList.remove('grayscale');
+                    }
                 });
             }
             
             // הדגשת קישורים
             if (linksUnderline) {
                 linksUnderline.addEventListener('change', function() {
-                    document.body.classList.toggle('links-underline', this.checked);
+                    if (this.checked) {
+                        document.body.classList.add('links-underline');
+                    } else {
+                        document.body.classList.remove('links-underline');
+                    }
                 });
             }
         });
     </script>
 </body>
-</html>
+</html><!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="קבוצת חן למימון - החברה המובילה לניכיון שיקים מקצועי, מהיר ואמין לעסקים ועצמאיים. תנאים מצוינים, אישור מהיר, ליווי מקצועי.">
+    <meta name="keywords" content="ניכיון שיקים, ניכיון שיקים דחויים, ניכיון שיקים לעסקים, ניכיון שיקים לעצמאיים, קבוצת חן למימון, מזומן תמורת שיקים">
+    <title>קבוצת חן למימון - ניכיון שיקים מקצועי</title>
+    <!-- Favicon -->
+    <link rel="icon" href="https://via.placeholder.com/32" type="image/png">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <style>
+        /* סגנונות בסיסיים לתפריט הנגישות */
+        .accessibility-widget {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            width: 50px;
+            height: 50px;
+            background-color: #0c4a6e;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            z-index: 998;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .accessibility-widget:hover {
+            background-color: #075985;
+        }
+
+        .accessibility-menu {
+            position: fixed;
+            bottom: 80px;
+            left: 20px;
+            width: 250px;
+            background-color: white;
+            border-radius: 10px;
+            padding: 15px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            z-index: 999;
+            display: none;
+            transition: all 0.3s ease;
+        }
+
+        .accessibility-menu.show {
+            display: block;
+        }
+
+        /* סגנונות עבור אפשרויות הנגישות */
+        .large-font {
+            font-size: 120% !important;
+        }
+
+        .large-font h1, .large-font h2, .large-font h3, .large-font h4 {
+            font-size: 130% !important;
+        }
+
+        .high-contrast {
+            filter: contrast(150%);
+            background-color: black !important;
+            color: white !important;
+        }
+
+        .high-contrast a, .high-contrast button, .high-contrast h1, 
+        .high-contrast h2, .high-contrast h3, .high-contrast h4 {
+            color: yellow !important;
+        }
+
+        .grayscale {
+            filter: grayscale(100%);
+        }
+
+        .links-underline a {
+            text-decoration: underline !important;
+            text-decoration-thickness: 2px !important;
+        }
+
+        /* סגנונות נוספים מהאתר המקורי */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #25d366;
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            text-align: center;
+            font-size: 30px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 998;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s;
+        }
+
+        .whatsapp-float:hover {
+            background-color: #128c7e;
+        }
+
+        .hero-gradient {
+            background: linear-gradient(135deg, #0c4a6e 0%, #075985 100%);
+        }
+
+        .mobile-menu {
+            display: none;
+        }
+
+        .mobile-menu.open {
+            display: block;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .calculator-section {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+        }
+
+        .calculator-result {
+            background: #f8fafc;
+            border-radius: 8px;
+        }
+
+        .hero-company-name {
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        .hero-divider {
+            height: 3px;
+            width: 80px;
+            background-color: white;
+            margin: 0 auto 10px;
+        }
+
+        .hero-title-shadow {
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        .pulse-animation {
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% {
+                box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.7);
+            }
+            70% {
+                box-shadow: 0 0 0 10px rgba(255, 255, 255, 0);
+            }
+            100% {
+                box-shadow: 0 0 0 0 rgba(255, 255, 255, 0);
+            }
+        }
+
+        .rtl-support {
+            direction: rtl;
+            text-align: right;
+        }
+    </style>
+</head>
+<body class="rtl-support">
+    <!-- License Information -->
+    <div class="bg-blue-50 py-3 border-y border-blue-100">
+        <div class="container mx-auto px-4 text-center">
+            <div class="flex items-center justify-center space-x-2 space-x-reverse">
+                <i class="fas fa-certificate text-blue-900"></i>
+                <p class="text-blue-900 font-medium">אנו פועלים עם רישיון מורחב למתן אשראי שניתן ע"י רשות שוק ההון מס' 54604</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Top Bar -->
+    <div class="bg-blue-900 text-white py-2 px-4">
+        <div class="container mx-auto flex justify-between items-center">
+            <div class="flex items-center space-x-4 space-x-reverse">
+                <a href="tel:0505635020" class="text-sm hover:text-blue-200"><i class="fas fa-phone mr-2"></i> 050-5635020</a>
+                <a href="tel:036047377" class="text-sm hover:text-blue-200"><i class="fas fa-phone mr-2"></i> 03-6047377</a>
+                <a href="mailto:nirchen2010@gmail.com" class="text-sm hover:text-blue-200"><i class="fas fa-envelope mr-2"></i> nirchen2010@gmail.com</a>
+            </div>
+            <div class="flex items-center space-x-4 space-x-reverse">
+                <a href="#" class="text-sm hover:text-blue-200"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" class="text-sm hover:text-blue-200"><i class="fab fa-linkedin-in"></i></a>
+                <a href="https://api.whatsapp.com/send?phone=972505635020" target="_blank" class="text-sm hover:text-blue-200"><i class="fab fa-whatsapp"></i></a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="bg-white shadow-md sticky top-0 z-50">
+        <div class="container mx-auto px-2 sm:px-4 py-3 flex justify-between items-center nav-container">
+            <div class="flex items-center flex-shrink-0 logo-container">
+                <!-- לוגו סולידי במקום תמונה -->
+                <div class="h-12 w-12 bg-blue-900 rounded-lg flex items-center justify-center text-white font-bold text-xl mr-2 sm:mr-3 flex-shrink-0">
+                    ק"ח
+                </div>
+                <div>
+                    <h1 class="text-lg sm:text-xl font-bold text-blue-900 whitespace-nowrap">קבוצת חן למימון</h1>
+                    <p class="text-xs text-gray-600">ניכיון שיקים מקצועי</p>
+                </div>
+            </div>
+            
+            <div class="hidden md:flex space-x-8 space-x-reverse">
+                <a href="#home" class="text-blue-900 font-medium hover:text-blue-700 transition-all">בית</a>
+                <a href="#services" class="text-gray-700 hover:text-blue-700 transition-all">שירותים</a>
+                <a href="#calculator" class="text-gray-700 hover:text-blue-700 transition-all">מחשבון</a>
+                <a href="#about" class="text-gray-700 hover:text-blue-700 transition-all">אודות</a>
+                <a href="#location" class="text-gray-700 hover:text-blue-700 transition-all">מיקום</a>
+                <a href="#contact" class="text-gray-700 hover:text-blue-700 transition-all">יצירת קשר</a>
+                <a href="#faq" class="text-gray-700 hover:text-blue-700 transition-all">שאלות נפוצות</a>
+            </div>
+            
+            <button id="mobile-menu-button" class="md:hidden text-gray-700 focus:outline-none">
+                <i class="fas fa-bars text-2xl"></i>
+            </button>
+        </div>
+        
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="mobile-menu bg-white shadow-md absolute w-full md:hidden">
+            <div class="container mx-auto px-4 py-3 flex flex-col space-y-4">
+                <a href="#home" class="text-blue-900 font-medium py-2 border-b border-gray-100">בית</a>
+                <a href="#services" class="text-gray-700 hover:text-blue-700 py-2 border-b border-gray-100">שירותים</a>
+                <a href="#calculator" class="text-gray-700 hover:text-blue-700 py-2 border-b border-gray-100">מחשבון</a>
+                <a href="#about" class="text-gray-700 hover:text-blue-700 py-2 border-b border-gray-100">אודות</a>
+                <a href="#location" class="text-gray-700 hover:text-blue-700 py-2 border-b border-gray-100">מיקום</a>
+                <a href="#contact" class="text-gray-700 hover:text-blue-700 py-2 border-b border-gray-100">יצירת קשר</a>
+                <a href="#faq" class="text-gray-700 hover:text-blue-700 py-2">שאלות נפוצות</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero-gradient text-white py-20 relative">
+        <!-- תמונת רקע מעומעמת -->
+        <div class="absolute inset-0 z-0 opacity-20">
+            <img src="construction-site.jpg" alt="אתר בניה ברקע" class="object-cover w-full h-full">
+        </div>
+        <div class="container mx-auto px-4 flex flex-col md:flex-row items-center relative z-10">
+            <div class="md:w-1/2 mb-10 md:mb-0 animate__animated animate__fadeInRight">
+            <div class="text-center mb-12 animate__animated animate__fadeInRight">
+                <span class="inline-block bg-blue-800 text-white text-sm font-semibold py-1 px-3 rounded-full mb-4">המובילים בתחום ניכיון השיקים</span>
+                
+                <!-- שם החברה בגדול ובולט -->
+                <h1 class="text-3xl md:text-4xl lg:text-5xl font-bold mb-2 text-white hero-company-name hero-title-shadow">
+                    קבוצת חן למימון
+                </h1>
+                <div class="hero-divider"></div>
+                
+                <h2 class="text-3xl md:text-4xl font-bold mb-6">ניכיון שיקים מהיר ואמין</h2>
+                <p class="text-xl mb-8">הפתרון המהיר והמקצועי ביותר לניכיון שיקים לעסקים ולעצמאיים בישראל</p>
+                <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4 sm:space-x-reverse">
+                    <!-- כפתור עם שליחת מייל -->
+                    <a href="mailto:nirchen2010@gmail.com?subject=בקשת%20הצעת%20מחיר%20לניכיון%20שיקים&body=שלום,%0A%0Aאשמח%20לקבל%20הצעת%20מחיר%20לניכיון%20שיקים.%0A%0Aפרטי%20השיק:%0A-%20סכום:%20%0A-%20תאריך%20פירעון:%20%0A%0Aפרטי%20התקשרות:%0A-%20שם:%20%0A-%20טלפון:%20%0A%0Aבברכה," class="bg-white text-blue-900 font-bold py-3 px-6 rounded-lg text-center hover:bg-gray-100 transition-all pulse-animation">קבל הצעת מחיר</a>
+                    <a href="tel:0505635020" class="border-2 border-white text-white font-bold py-3 px-6 rounded-lg text-center hover:bg-white hover:text-blue-900 transition-all">
+                        <i class="fas fa-phone-alt ml-2"></i>התקשר עכשיו
+                    </a>
+                </div>
+                <div class="mt-8 flex items-center space-x-6 space-x-reverse">
+                    <div class="text-sm">
+                        <div class="flex items-center">
+                            <div class="text-yellow-400 mr-2">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <span>4.9/5</span>
+                        </div>
+                        <p>מעל 500 לקוחות מרוצים</p>
+                    </div>
+                </div>
+            </div>
+            <div class="md:w-1/2 flex justify-center">
+                <!-- השארתי את הכותרת בחלק השמאלי במקום התמונה -->
+            </div>
+        </div>
+    </section>
 
     <!-- About Checkwith Section -->
     <section class="py-16 bg-blue-50">
@@ -868,269 +1019,4 @@
             </div>
             
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mt-8">
-                <div class="feature-card bg-gray-50 p-8 rounded-lg shadow-md transition-all">
-                    <div class="text-blue-900 mb-4">
-                        <i class="fas fa-handshake text-4xl"></i>
-                    </div>
-                    <h3 class="text-xl font-bold mb-3">שירות אישי</h3>
-                    <p class="text-gray-600">כל לקוח מקבל יחס אישי ופתרון מותאם לצרכים הספציפיים שלו.</p>
-                </div>
-                
-                <div class="feature-card bg-gray-50 p-8 rounded-lg shadow-md transition-all">
-                    <div class="text-blue-900 mb-4">
-                        <i class="fas fa-certificate text-4xl"></i>
-                    </div>
-                    <h3 class="text-xl font-bold mb-3">רישיון מורחב</h3>
-                    <p class="text-gray-600">אנו פועלים עם רישיון מורחב למתן אשראי מטעם רשות שוק ההון, מה שמבטיח אמינות ובטחון.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Services Section -->
-    <section id="services" class="py-16 bg-blue-50">
-        <div class="container mx-auto px-4">
-            <div class="text-center mb-12">
-                <span class="inline-block bg-blue-100 text-blue-800 text-sm font-semibold py-1 px-3 rounded-full mb-2">שירותים</span>
-                <h2 class="text-3xl font-bold text-blue-900 mb-4">השירותים שלנו</h2>
-                <p class="text-gray-600 max-w-2xl mx-auto">אנו מציעים מגוון שירותים פיננסיים לעסקים ולעצמאיים</p>
-            </div>
-            
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <div class="bg-white p-8 rounded-lg shadow-md">
-                    <div class="text-blue-900 mb-4">
-                        <i class="fas fa-money-check-alt text-4xl"></i>
-                    </div>
-                    <h3 class="text-xl font-bold mb-3">ניכיון שיקים</h3>
-                    <p class="text-gray-600 mb-4">המרת שיקים דחויים למזומן באופן מיידי, תוך שמירה על העמלה הנמוכה ביותר האפשרית.</p>
-                    <a href="#contact" class="text-blue-800 font-medium hover:text-blue-600">פרטים נוספים <i class="fas fa-chevron-left mr-1"></i></a>
-                </div>
-                
-                <div class="bg-white p-8 rounded-lg shadow-md">
-                    <div class="text-blue-900 mb-4">
-                        <i class="fas fa-credit-card text-4xl"></i>
-                    </div>
-                    <h3 class="text-xl font-bold mb-3">מימון לעסקים</h3>
-                    <p class="text-gray-600 mb-4">פתרונות מימון מותאמים אישית לעסקים קטנים ובינוניים בתנאים נוחים ובאישור מהיר.</p>
-                    <a href="#contact" class="text-blue-800 font-medium hover:text-blue-600">פרטים נוספים <i class="fas fa-chevron-left mr-1"></i></a>
-                </div>
-                
-                <div class="bg-white p-8 rounded-lg shadow-md">
-                    <div class="text-blue-900 mb-4">
-                        <i class="fas fa-landmark text-4xl"></i>
-                    </div>
-                    <h3 class="text-xl font-bold mb-3">הלוואות לעצמאיים</h3>
-                    <p class="text-gray-600 mb-4">הלוואות בתנאים מועדפים לעצמאיים ובעלי עסקים, ללא בירוקרטיה מיותרת.</p>
-                    <a href="#contact" class="text-blue-800 font-medium hover:text-blue-600">פרטים נוספים <i class="fas fa-chevron-left mr-1"></i></a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- About Section -->
-    <section id="about" class="py-16 bg-white relative">
-        <!-- תמונת רקע של אתר בנייה נוסף -->
-        <div class="absolute inset-0 z-0 opacity-10">
-            <img src="construction-site2.jpg" alt="אתר בניה נוסף" class="object-cover w-full h-full">
-        </div>
-        <div class="container mx-auto px-4 relative z-10">
-            <div class="text-center mb-12">
-                <span class="inline-block bg-blue-100 text-blue-800 text-sm font-semibold py-1 px-3 rounded-full mb-2">אודות</span>
-                <h2 class="text-3xl font-bold text-blue-900 mb-4">מי אנחנו</h2>
-                <p class="text-gray-600 max-w-2xl mx-auto">קבוצת חן למימון הוקמה במטרה לספק שירותי ניכיון שיקים מקצועיים לעסקים ולעצמאיים</p>
-            </div>
-            
-            <div class="flex flex-col md:flex-row items-center gap-10">
-                <div class="md:w-1/2">
-                    <img src="https://via.placeholder.com/600x400" alt="ניר חן יזמות" class="rounded-lg shadow-lg max-w-full h-auto">
-                </div>
-                <div class="md:w-1/2">
-                    <h3 class="text-2xl font-bold text-blue-900 mb-4">ניסיון וידע</h3>
-                    <p class="text-gray-600 mb-4">עם למעלה מ-12 שנות ניסיון בתחום ניכיון השיקים, אנו גאים להציע את השירות המקצועי והאמין ביותר בשוק. הצוות שלנו מורכב ממומחים בעלי ידע רב בתחום הפיננסי, המחויבים לספק לכם את הפתרון המותאם ביותר לצרכי העסק שלכם.</p>
-                    
-                    <h3 class="text-2xl font-bold text-blue-900 mb-4">מקצועיות ואמינות</h3>
-                    <p class="text-gray-600 mb-4">אנו פועלים בשקיפות מלאה מול לקוחותינו ומחויבים לספק שירות מקצועי ואמין. כל לקוח מקבל יחס אישי ומקצועי, החל משלב הייעוץ הראשוני ועד להשלמת התהליך ולאחריו.</p>
-                    
-                    <div class="flex items-center mt-6">
-                        <div class="mr-6">
-                            <img src="https://via.placeholder.com/80x80" alt="ניר חן" class="rounded-full">
-                        </div>
-                        <div>
-                            <h4 class="text-xl font-bold text-blue-900">ניר חן</h4>
-                            <p class="text-gray-600">מנכ"ל ומייסד</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-<!-- כפתור והתפריט של הנגישות -->
-<div class="accessibility-widget" style="position: fixed; bottom: 20px; left: 20px; width: 50px; height: 50px; background-color: #0c4a6e; color: white; border-radius: 50%; display: flex; justify-content: center; align-items: center; cursor: pointer; z-index: 998; box-shadow: 0 4px 10px rgba(0,0,0,0.2);">
-  <i class="fas fa-universal-access"></i>
-</div>
-
-<div id="accessibility-menu" style="position: fixed; bottom: 80px; left: 20px; width: 250px; background-color: white; border-radius: 10px; padding: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.2); z-index: 999; display: none;">
-  <h3 class="text-lg font-bold text-blue-900 mb-4">הגדרות נגישות</h3>
-  <div class="space-y-3">
-    <div class="flex items-center">
-      <input type="checkbox" id="font-large" class="ml-2">
-      <label for="font-large">הגדלת גופן</label>
-    </div>
-    <div class="flex items-center">
-      <input type="checkbox" id="high-contrast" class="ml-2">
-      <label for="high-contrast">ניגודיות גבוהה</label>
-    </div>
-    <div class="flex items-center">
-      <input type="checkbox" id="grayscale" class="ml-2">
-      <label for="grayscale">גווני אפור</label>
-    </div>
-    <div class="flex items-center">
-      <input type="checkbox" id="links-underline" class="ml-2">
-      <label for="links-underline">הדגשת קישורים</label>
-    </div>
-  </div>
-</div>
-
-<!-- סגנונות עבור אפשרויות הנגישות -->
-<style>
-  .large-font {
-    font-size: 120% !important;
-  }
-  .large-font h1, .large-font h2, .large-font h3, .large-font h4 {
-    font-size: 130% !important;
-  }
-  .high-contrast {
-    filter: contrast(150%);
-    background-color: black !important;
-    color: white !important;
-  }
-  .high-contrast a, .high-contrast button, .high-contrast h1, 
-  .high-contrast h2, .high-contrast h3, .high-contrast h4 {
-    color: yellow !important;
-  }
-  .grayscale {
-    filter: grayscale(100%);
-  }
-  .links-underline a {
-    text-decoration: underline !important;
-    text-decoration-thickness: 2px !important;
-  }
-</style>
-
-<!-- סקריפט לפונקציונליות כפתור הנגישות -->
-<script>
-  document.addEventListener('DOMContentLoaded', function() {
-    // כפתור הנגישות
-    const accessibilityWidget = document.querySelector('.accessibility-widget');
-    const accessibilityMenu = document.getElementById('accessibility-menu');
-    
-    // יצירת האזנה ללחיצה על כפתור הנגישות
-    if (accessibilityWidget && accessibilityMenu) {
-      accessibilityWidget.addEventListener('click', function() {
-        if (accessibilityMenu.style.display === 'block') {
-          accessibilityMenu.style.display = 'none';
-        } else {
-          accessibilityMenu.style.display = 'block';
-        }
-      });
-    }
-    
-    // הגדלת גופן
-    const fontLarge = document.getElementById('font-large');
-    if (fontLarge) {
-      fontLarge.addEventListener('change', function() {
-        if (this.checked) {
-          document.body.classList.add('large-font');
-        } else {
-          document.body.classList.remove('large-font');
-        }
-      });
-    }
-    
-    // ניגודיות גבוהה
-    const highContrast = document.getElementById('high-contrast');
-    if (highContrast) {
-      highContrast.addEventListener('change', function() {
-        if (this.checked) {
-          document.body.classList.add('high-contrast');
-        } else {
-          document.body.classList.remove('high-contrast');
-        }
-      });
-    }
-    
-    // גווני אפור
-    const grayscale = document.getElementById('grayscale');
-    if (grayscale) {
-      grayscale.addEventListener('change', function() {
-        if (this.checked) {
-          document.body.classList.add('grayscale');
-        } else {
-          document.body.classList.remove('grayscale');
-        }
-      });
-    }
-    
-    // הדגשת קישורים
-    const linksUnderline = document.getElementById('links-underline');
-    if (linksUnderline) {
-      linksUnderline.addEventListener('change', function() {
-        if (this.checked) {
-          document.body.classList.add('links-underline');
-        } else {
-          document.body.classList.remove('links-underline');
-        }
-      });
-    }
-  });
-</script>
-    <!-- Location Section -->
-    <section id="location" class="py-16 bg-blue-50">
-        <div class="container mx-auto px-4">
-            <div class="text-center mb-12">
-                <span class="inline-block bg-blue-100 text-blue-800 text-sm font-semibold py-1 px-3 rounded-full mb-2">מיקום</span>
-                <h2 class="text-3xl font-bold text-blue-900 mb-4">איפה אנחנו נמצאים</h2>
-                <p class="text-gray-600 max-w-2xl mx-auto">משרדנו ממוקם בראש העין בפארק תעשייה אפק</p>
-            </div>
-            
-            <div class="flex flex-col md:flex-row gap-8">
-                <div class="md:w-1/2 bg-white p-8 rounded-lg shadow-md">
-                    <h3 class="text-xl font-bold text-blue-900 mb-4">כתובת המשרד</h3>
-                    <div class="flex items-start mb-4">
-                        <i class="fas fa-map-marker-alt text-blue-900 mt-1 ml-3"></i>
-                        <div>
-                            <p class="text-gray-600">המלאכה 8, ראש העין</p>
-                            <p class="text-gray-600">פארק תעשייה אפק, קומה ב'</p>
-                        </div>
-                    </div>
-                    
-                    <h3 class="text-xl font-bold text-blue-900 mb-4">שעות פעילות</h3>
-                    <div class="flex items-start mb-4">
-                        <i class="fas fa-clock text-blue-900 mt-1 ml-3"></i>
-                        <div>
-                            <p class="text-gray-600">ימים א'-ה': 9:30-16:30</p>
-                        </div>
-                    </div>
-                    
-                    <h3 class="text-xl font-bold text-blue-900 mb-4">יצירת קשר</h3>
-                    <div class="flex items-start mb-4">
-                        <i class="fas fa-phone text-blue-900 mt-1 ml-3"></i>
-                        <div>
-                            <p class="text-gray-600">טלפון: 050-5635020</p>
-                            <p class="text-gray-600">משרד: 03-6047377</p>
-                        </div>
-                    </div>
-                    
-                    <div class="flex items-start">
-                        <i class="fas fa-envelope text-blue-900 mt-1 ml-3"></i>
-                        <p class="text-gray-600">דוא"ל: nirchen2010@gmail.com</p>
-                    </div>
-                </div>
-                
-                <div class="md:w-1/2 rounded-lg overflow-hidden shadow-md">
-                    <!-- מפת גוגל עם המיקום הנכון בראש העין -->
-                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3381.4226578442283!2d34.953071799999996!3d32.0963598!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x151d35f8ab8b46c9%3A0xf765a65a221e33fe!2z15TXnteQ15vXlCA4LCDXqNeQ16kg15TXoteZ158!5e0!3m2!1sil!2sil!4v1713209357486!5m2!1sil!2sil" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-                </div>
-            </div>
-        </div>
-    </section>
+                <div class="feature-card bg-gray-50 p-8 rounded-lg
