@@ -980,3 +980,31 @@
 </div>
 </div>
 </section>
+<!-- Accessibility Widget - Simple Version -->
+<div id="accessibility-simple-widget" class="accessibility-widget" role="button" tabindex="0" aria-label="פתיחת תפריט נגישות">
+    <i class="fas fa-universal-access" aria-hidden="true"></i>
+    <span class="sr-only">פתח תפריט נגישות</span>
+</div>
+
+<div id="accessibility-simple-menu" class="accessibility-menu" role="dialog" aria-labelledby="accessibility-dialog-title">
+    <h3 id="accessibility-dialog-title" class="text-lg font-bold text-blue-900 mb-4">הגדרות נגישות</h3>
+    <div class="space-y-3">
+        <div class="flex items-center">
+            <input class="ml-2" id="simple-font-large" type="checkbox">
+            <label for="simple-font-large">הגדלת גופן</label>
+        </div>
+        <div class="flex items-center">
+            <input class="ml-2" id="simple-high-contrast" type="checkbox">
+            <label for="simple-high-contrast">ניגודיות גבוהה</label>
+        </div>
+        <div class="flex items-center">
+            <input class="ml-2" id="simple-links-underline" type="checkbox">
+            <label for="simple-links-underline">הדגשת קישורים</label>
+        </div>
+        <div class="mt-4">
+            <button id="simple-reset-accessibility" class="bg-blue-900 text-white py-2 px-4 rounded-lg hover:bg-blue-800 transition-all w-full">
+                איפוס הגדרות
+            </button>
+        </div>
+    </div>
+</div>
