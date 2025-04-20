@@ -504,19 +504,29 @@
                 });
             });
             
-            // כפתור הנגישות
-            const accessibilityWidget = document.querySelector('.accessibility-widget');
-            const accessibilityMenu = document.getElementById('accessibility-menu');
-            
-            if (accessibilityWidget && accessibilityMenu) {
-                accessibilityWidget.addEventListener('click', function() {
-                    if (accessibilityMenu.style.display === 'block') {
-                        accessibilityMenu.style.display = 'none';
-                    } else {
-                        accessibilityMenu.style.display = 'block';
-                    }
-                });
-            }
+          // כפתור הנגישות
+const accessibilityWidget = document.querySelector('.accessibility-widget');
+const accessibilityMenu = document.getElementById('accessibility-menu');
+
+if (accessibilityWidget && accessibilityMenu) {
+    accessibilityWidget.addEventListener('click', function(e) {
+        e.preventDefault(); // מונע את ברירת המחדל
+        e.stopPropagation(); // מונע התפשטות האירוע
+        
+        if (accessibilityMenu.style.display === 'block') {
+            accessibilityMenu.style.display = 'none';
+        } else {
+            accessibilityMenu.style.display = 'block';
+        }
+    });
+    
+    // סגירת תפריט הנגישות כאשר לוחצים בכל מקום אחר בדף
+    document.addEventListener('click', function(e) {
+        if (e.target !== accessibilityWidget && !accessibilityMenu.contains(e.target)) {
+            accessibilityMenu.style.display = 'none';
+        }
+    });
+}
             
             // פונקציונליות אפשרויות הנגישות
             const fontLarge = document.getElementById('font-large');
