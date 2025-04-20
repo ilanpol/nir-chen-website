@@ -283,3 +283,77 @@ a:focus, button:focus, input:focus, textarea:focus, select:focus, [role="button"
     outline: 3px solid #4299e1 !important;
     outline-offset: 2px !important;
 }
+/* סגנונות בסיסיים לתפריט הנגישות הפשוט */
+.accessibility-widget {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    width: 50px;
+    height: 50px;
+    background-color: #0c4a6e;
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    z-index: 9999;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.accessibility-widget:hover {
+    background-color: #075985;
+}
+
+.accessibility-menu {
+    position: fixed;
+    bottom: 80px;
+    left: 20px;
+    width: 250px;
+    background-color: white;
+    border-radius: 10px;
+    padding: 15px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    z-index: 9999;
+    display: none;
+    border: 2px solid #0c4a6e;
+}
+
+.accessibility-menu.show {
+    display: block;
+}
+
+/* סגנונות עבור אפשרויות הנגישות */
+body.large-font {
+    font-size: 120% !important;
+}
+
+body.high-contrast {
+    background-color: black !important;
+    color: white !important;
+}
+
+body.high-contrast a, 
+body.high-contrast button, 
+body.high-contrast h1, 
+body.high-contrast h2, 
+body.high-contrast h3 {
+    color: yellow !important;
+}
+
+body.links-underline a {
+    text-decoration: underline !important;
+    text-decoration-thickness: 2px !important;
+}
+
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0,0,0,0);
+    white-space: nowrap;
+    border: 0;
+}
