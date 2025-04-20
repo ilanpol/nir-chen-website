@@ -357,3 +357,123 @@ body.links-underline a {
     white-space: nowrap;
     border: 0;
 }
+<!-- הוסף את זה ממש לפני תג הסגירה </body> -->
+
+<!-- כפתור נגישות מינימלי עם סגנון מוטמע -->
+<style>
+    .simple-access-btn {
+        position: fixed;
+        bottom: 20px;
+        left: 20px;
+        width: 50px;
+        height: 50px;
+        background-color: #0c4a6e;
+        color: white;
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+        z-index: 9999;
+        font-weight: bold;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    }
+    
+    .simple-access-menu {
+        position: fixed;
+        bottom: 80px;
+        left: 20px;
+        width: 250px;
+        background-color: white;
+        border-radius: 10px;
+        padding: 15px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        z-index: 9999;
+        display: none;
+        border: 2px solid #0c4a6e;
+    }
+    
+    .simple-access-menu.show {
+        display: block;
+    }
+    
+    body.larger-text {
+        font-size: 120% !important;
+    }
+    
+    body.high-contrast {
+        background-color: black !important;
+        color: white !important;
+    }
+    
+    body.high-contrast a, 
+    body.high-contrast button, 
+    body.high-contrast h1, 
+    body.high-contrast h2, 
+    body.high-contrast h3 {
+        color: yellow !important;
+    }
+</style>
+
+<div id="simple-access-btn" class="simple-access-btn" role="button" tabindex="0" aria-label="נגישות">
+    נג
+</div>
+
+<div id="simple-access-menu" class="simple-access-menu">
+    <h3 style="margin-bottom: 10px; font-weight: bold;">הגדרות נגישות</h3>
+    <div style="display: flex; margin-bottom: 10px;">
+        <input type="checkbox" id="larger-text-option" style="margin-left: 5px;">
+        <label for="larger-text-option">הגדלת טקסט</label>
+    </div>
+    <div style="display: flex; margin-bottom: 10px;">
+        <input type="checkbox" id="contrast-option" style="margin-left: 5px;">
+        <label for="contrast-option">ניגודיות גבוהה</label>
+    </div>
+    <button id="reset-btn" style="background-color: #0c4a6e; color: white; padding: 8px; border: none; border-radius: 5px; cursor: pointer; width: 100%;">
+        איפוס הגדרות
+    </button>
+</div>
+
+<script>
+    // קוד JavaScript פשוט מאוד
+    document.getElementById('simple-access-btn').addEventListener('click', function() {
+        var menu = document.getElementById('simple-access-menu');
+        if (menu.classList.contains('show')) {
+            menu.classList.remove('show');
+        } else {
+            menu.classList.add('show');
+        }
+    });
+    
+    document.getElementById('larger-text-option').addEventListener('change', function() {
+        if (this.checked) {
+            document.body.classList.add('larger-text');
+        } else {
+            document.body.classList.remove('larger-text');
+        }
+    });
+    
+    document.getElementById('contrast-option').addEventListener('change', function() {
+        if (this.checked) {
+            document.body.classList.add('high-contrast');
+        } else {
+            document.body.classList.remove('high-contrast');
+        }
+    });
+    
+    document.getElementById('reset-btn').addEventListener('click', function() {
+        document.body.classList.remove('larger-text', 'high-contrast');
+        document.getElementById('larger-text-option').checked = false;
+        document.getElementById('contrast-option').checked = false;
+        alert('ההגדרות אופסו בהצלחה');
+    });
+    
+    // סגירת התפריט בלחיצה מחוץ לאזור
+    document.addEventListener('click', function(event) {
+        var menu = document.getElementById('simple-access-menu');
+        var btn = document.getElementById('simple-access-btn');
+        if (!menu.contains(event.target) && !btn.contains(event.target) && menu.classList.contains('show')) {
+            menu.classList.remove('show');
+        }
+    });
+</script>
