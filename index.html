@@ -964,7 +964,126 @@
             </div>
         </div>
     </section>
+<!-- כפתור והתפריט של הנגישות -->
+<div class="accessibility-widget" style="position: fixed; bottom: 20px; left: 20px; width: 50px; height: 50px; background-color: #0c4a6e; color: white; border-radius: 50%; display: flex; justify-content: center; align-items: center; cursor: pointer; z-index: 998; box-shadow: 0 4px 10px rgba(0,0,0,0.2);">
+  <i class="fas fa-universal-access"></i>
+</div>
 
+<div id="accessibility-menu" style="position: fixed; bottom: 80px; left: 20px; width: 250px; background-color: white; border-radius: 10px; padding: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.2); z-index: 999; display: none;">
+  <h3 class="text-lg font-bold text-blue-900 mb-4">הגדרות נגישות</h3>
+  <div class="space-y-3">
+    <div class="flex items-center">
+      <input type="checkbox" id="font-large" class="ml-2">
+      <label for="font-large">הגדלת גופן</label>
+    </div>
+    <div class="flex items-center">
+      <input type="checkbox" id="high-contrast" class="ml-2">
+      <label for="high-contrast">ניגודיות גבוהה</label>
+    </div>
+    <div class="flex items-center">
+      <input type="checkbox" id="grayscale" class="ml-2">
+      <label for="grayscale">גווני אפור</label>
+    </div>
+    <div class="flex items-center">
+      <input type="checkbox" id="links-underline" class="ml-2">
+      <label for="links-underline">הדגשת קישורים</label>
+    </div>
+  </div>
+</div>
+
+<!-- סגנונות עבור אפשרויות הנגישות -->
+<style>
+  .large-font {
+    font-size: 120% !important;
+  }
+  .large-font h1, .large-font h2, .large-font h3, .large-font h4 {
+    font-size: 130% !important;
+  }
+  .high-contrast {
+    filter: contrast(150%);
+    background-color: black !important;
+    color: white !important;
+  }
+  .high-contrast a, .high-contrast button, .high-contrast h1, 
+  .high-contrast h2, .high-contrast h3, .high-contrast h4 {
+    color: yellow !important;
+  }
+  .grayscale {
+    filter: grayscale(100%);
+  }
+  .links-underline a {
+    text-decoration: underline !important;
+    text-decoration-thickness: 2px !important;
+  }
+</style>
+
+<!-- סקריפט לפונקציונליות כפתור הנגישות -->
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    // כפתור הנגישות
+    const accessibilityWidget = document.querySelector('.accessibility-widget');
+    const accessibilityMenu = document.getElementById('accessibility-menu');
+    
+    // יצירת האזנה ללחיצה על כפתור הנגישות
+    if (accessibilityWidget && accessibilityMenu) {
+      accessibilityWidget.addEventListener('click', function() {
+        if (accessibilityMenu.style.display === 'block') {
+          accessibilityMenu.style.display = 'none';
+        } else {
+          accessibilityMenu.style.display = 'block';
+        }
+      });
+    }
+    
+    // הגדלת גופן
+    const fontLarge = document.getElementById('font-large');
+    if (fontLarge) {
+      fontLarge.addEventListener('change', function() {
+        if (this.checked) {
+          document.body.classList.add('large-font');
+        } else {
+          document.body.classList.remove('large-font');
+        }
+      });
+    }
+    
+    // ניגודיות גבוהה
+    const highContrast = document.getElementById('high-contrast');
+    if (highContrast) {
+      highContrast.addEventListener('change', function() {
+        if (this.checked) {
+          document.body.classList.add('high-contrast');
+        } else {
+          document.body.classList.remove('high-contrast');
+        }
+      });
+    }
+    
+    // גווני אפור
+    const grayscale = document.getElementById('grayscale');
+    if (grayscale) {
+      grayscale.addEventListener('change', function() {
+        if (this.checked) {
+          document.body.classList.add('grayscale');
+        } else {
+          document.body.classList.remove('grayscale');
+        }
+      });
+    }
+    
+    // הדגשת קישורים
+    const linksUnderline = document.getElementById('links-underline');
+    if (linksUnderline) {
+      linksUnderline.addEventListener('change', function() {
+        if (this.checked) {
+          document.body.classList.add('links-underline');
+        } else {
+          document.body.classList.remove('links-underline');
+        }
+      });
+    }
+  });
+</script>
     <!-- Location Section -->
     <section id="location" class="py-16 bg-blue-50">
         <div class="container mx-auto px-4">
