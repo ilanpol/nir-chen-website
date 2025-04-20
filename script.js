@@ -250,3 +250,188 @@ document.addEventListener('DOMContentLoaded', function() {
         observer.observe(element);
     });
 });
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // מצא את האלמנט הראשי של התוכן והוסף לו ID
+        const mainContent = document.querySelector('section:first-of-type') || document.querySelector('main');
+        if (mainContent && !mainContent.id) {
+            mainContent.id = 'main-content';
+        }
+        
+        // תפריט נגישות
+        const accessibilityWidget = document.querySelector('.accessibility-widget');
+        const accessibilityMenu = document.getElementById('accessibility-menu');
+        
+        // פונקציונליות פתיחה וסגירה של תפריט
+        if (accessibilityWidget && accessibilityMenu) {
+            accessibilityWidget.addEventListener('click', function() {
+                const isExpanded = accessibilityMenu.classList.contains('show');
+                accessibilityMenu.classList.toggle('show');
+                accessibilityWidget.setAttribute('aria-expanded', !isExpanded);
+                
+                // אם התפריט נפתח, התמקד בכותרת שלו
+                if (!isExpanded) {
+                    const title = document.getElementById('accessibility-dialog-title');
+                    if (title) {
+                        title.focus();
+                    }
+                }
+            });
+            
+            // סגירת התפריט בלחיצה מחוץ לו
+            document.addEventListener('click', function(event) {
+                if (!accessibilityMenu.contains(event.target) && 
+                    !accessibilityWidget.contains(event.target) &&
+                    accessibilityMenu.classList.contains('show')) {
+                    accessibilityMenu.classList.remove('show');
+                    accessibilityWidget.setAttribute('aria-expanded', 'false');
+                    accessibilityWidget.focus(); // החזרת הפוקוס לכפתור
+                }
+            });
+            
+            // טיפול במקש Escape לסגירת התפריט
+            document.addEventListener('keydown', function(event) {
+                if (event.key === 'Escape' && accessibilityMenu.classList.contains('show')) {
+                    accessibilityMenu.classList.remove('show');
+                    accessibilityWidget.setAttribute('aria-expanded', 'false');
+                    accessibilityWidget.focus(); // החזרת הפוקוס לכפתור
+                }
+            });
+        }
+        
+        // פונקציונאליות אפשרויות הנגישות
+        const fontLarge = document.getElementById('font-large');
+        const highContrast = document.getElementById('high-contrast');
+        const grayscale = document.getElementById('grayscale');
+        const linksUnderline = document.getElementById('links-underline');
+        const resetButton = document.getElementById('reset-accessibility');
+        
+        // הגדלת גופן
+        if (fontLarge) {
+            fontLarge.addEventListener('change', function() {
+                document.body.classList.toggle('large-font', this.checked);
+                try {
+                    localStorage.setItem('accessibility_large-font', this.checked);
+                } catch (e) {
+                    console.log('localStorage is not available');
+                }
+            });
+        }
+        
+        // ניגודיות גבוהה
+        if (highContrast) {
+            highContrast.addEventListener('change', function() {
+                document.body.classList.toggle('high-contrast', this.checked);
+                try {
+                    localStorage.setItem('accessibility_high-contrast', this.checked);
+                } catch (e) {
+                    console.log('localStorage is not available');
+                }
+            });
+        }
+        
+        // גווני אפור
+        if (grayscale) {
+            grayscale.addEventListener('change', function() {
+                document.body.classList.toggle('grayscale', this.checked);
+                try {
+                    localStorage.setItem('accessibility_grayscale', this.checked);
+                } catch (e) {
+                    console.log('localStorage is not available');
+                }
+            });
+        }
+        
+        // הדגשת קישורים
+        if (linksUnderline) {
+            linksUnderline.addEventListener('change', function() {
+                document.body.classList.toggle('links-underline', this.checked);
+                try {
+                    localStorage.setItem('accessibility_links-underline', this.checked);
+                } catch (e) {
+                    console.log('localStorage is not available');
+                }
+            });
+        }
+        
+        // איפוס הגדרות
+        if (resetButton) {
+            resetButton.addEventListener('click', function() {
+                // איפוס תצוגת האתר
+                document.body.classList.remove('large-font', 'high-contrast', 'grayscale', 'links-underline');
+                
+                // איפוס checkboxes
+                if (fontLarge) fontLarge.checked = false;
+                if (highContrast) highContrast.checked = false;
+                if (grayscale) grayscale.checked = false;
+                if (linksUnderline) linksUnderline.checked = false;
+                
+                // מחיקת כל ההגדרות מהאחסון המקומי
+                try {
+                    localStorage.removeItem('accessibility_large-font');
+                    localStorage.removeItem('accessibility_high-contrast');
+                    localStorage.removeItem('accessibility_grayscale');
+                    localStorage.removeItem('accessibility_links-underline');
+                } catch (e) {
+                    console.log('localStorage is not available');
+                }
+                
+                // הודעה למשתמש
+                alert('הגדרות הנגישות אופסו בהצלחה');
+            });
+        }
+        
+        // טעינת הגדרות מהאחסון המקומי
+        try {
+            if (fontLarge) {
+                const largeFontSetting = localStorage.getItem('accessibility_large-font') === 'true';
+                fontLarge.checked = largeFontSetting;
+                document.body.classList.toggle('large-font', largeFontSetting);
+            }
+            
+            if (highContrast) {
+                const highContrastSetting = localStorage.getItem('accessibility_high-contrast') === 'true';
+                highContrast.checked = highContrastSetting;
+                document.body.classList.toggle('high-contrast', highContrastSetting);
+            }
+            
+            if (grayscale) {
+                const grayscaleSetting = localStorage.getItem('accessibility_grayscale') === 'true';
+                grayscale.checked = grayscaleSetting;
+                document.body.classList.toggle('grayscale', grayscaleSetting);
+            }
+            
+            if (linksUnderline) {
+                const linksUnderlineSetting = localStorage.getItem('accessibility_links-underline') === 'true';
+                linksUnderline.checked = linksUnderlineSetting;
+                document.body.classList.toggle('links-underline', linksUnderlineSetting);
+            }
+        } catch (e) {
+            console.log('localStorage is not available');
+        }
+        
+        // שיפור נגישות לשאלות נפוצות (FAQ)
+        const faqQuestions = document.querySelectorAll('.faq-question');
+        faqQuestions.forEach((question, index) => {
+            const answer = question.nextElementSibling;
+            const id = 'faq-answer-' + (index + 1);
+            
+            // הוספת ARIA attributes
+            if (answer) {
+                answer.id = id;
+                question.setAttribute('aria-expanded', 'false');
+                question.setAttribute('aria-controls', id);
+                question.setAttribute('role', 'button');
+                question.setAttribute('tabindex', '0');
+                
+                // טיפול באירועי מקש
+                question.addEventListener('keydown', function(event) {
+                    if (event.key === 'Enter' || event.key === ' ') {
+                        event.preventDefault();
+                        question.click();
+                    }
+                });
+            }
+        });
+    });
+</script>
