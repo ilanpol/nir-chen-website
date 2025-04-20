@@ -163,3 +163,123 @@ body {
 .links-underline a {
     text-decoration: underline !important;
 }
+/* סגנונות בסיסיים לתפריט הנגישות */
+.accessibility-widget {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    width: 50px;
+    height: 50px;
+    background-color: #0c4a6e;
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    z-index: 998;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+}
+
+.accessibility-widget:hover,
+.accessibility-widget:focus {
+    background-color: #075985;
+    border: 2px solid white;
+    outline: none;
+}
+
+.accessibility-menu {
+    position: fixed;
+    bottom: 80px;
+    left: 20px;
+    width: 280px;
+    background-color: white;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    z-index: 999;
+    display: none;
+    transition: all 0.3s ease;
+    border: 2px solid #0c4a6e;
+}
+
+.accessibility-menu.show {
+    display: block;
+}
+
+/* סגנונות עבור אפשרויות הנגישות */
+.large-font {
+    font-size: 120% !important;
+}
+
+.large-font h1, .large-font h2, .large-font h3, .large-font h4 {
+    font-size: 130% !important;
+}
+
+.large-font p, .large-font li, .large-font label, .large-font input, .large-font textarea, .large-font button {
+    font-size: 120% !important;
+    line-height: 1.5 !important;
+}
+
+.high-contrast {
+    filter: contrast(150%);
+    background-color: black !important;
+    color: white !important;
+}
+
+.high-contrast a, .high-contrast button, .high-contrast h1, 
+.high-contrast h2, .high-contrast h3, .high-contrast h4 {
+    color: yellow !important;
+}
+
+.high-contrast input, .high-contrast textarea {
+    background-color: #333 !important;
+    color: white !important;
+    border-color: yellow !important;
+}
+
+.grayscale {
+    filter: grayscale(100%);
+}
+
+.links-underline a {
+    text-decoration: underline !important;
+    text-decoration-thickness: 2px !important;
+}
+
+/* השיפור עבור מקלדת */
+.skip-link {
+    position: absolute;
+    top: -40px;
+    left: 0;
+    background: #0c4a6e;
+    color: white;
+    padding: 8px;
+    z-index: 9999;
+    transition: top 0.3s;
+}
+
+.skip-link:focus {
+    top: 0;
+}
+
+/* Screen reader only */
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0,0,0,0);
+    white-space: nowrap;
+    border: 0;
+}
+
+/* הוספת פוקוס ברור לכל האלמנטים האינטראקטיביים */
+a:focus, button:focus, input:focus, textarea:focus, select:focus, [role="button"]:focus {
+    outline: 3px solid #4299e1 !important;
+    outline-offset: 2px !important;
+}
