@@ -497,4 +497,16 @@ h2.headline {
     text-decoration: none !important;
     position: relative !important;
 }
+            /* הסרת הקו מתחת לכותרת "קבוצת חן למימון" */
+section[id="home"] h1,
+section.hero-gradient h1,
+.hero-title-shadow,
+h1:contains("מימון"), /* ניסיון להתאים למילה "מימון" */
+span.headline,
+h1.headline,
+h2.headline {
+    border-bottom: none !important;
+    text-decoration: none !important;
+    position: relative !important;
+}
 </script>
