@@ -476,4 +476,13 @@ body.links-underline a {
             menu.classList.remove('show');
         }
     });
+.hero-gradient h1::after, 
+.hero-gradient h2::after, 
+section[class*="hero"] h1::after, 
+section[class*="hero"] h2::after,
+.hero-gradient .hero-title-shadow::after {
+    display: none !important;
+    border-bottom: none !important;
+    content: none !important;
+}            
 </script>
