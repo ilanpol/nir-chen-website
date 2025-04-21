@@ -829,3 +829,45 @@ allElements.forEach(function(el) {
         document.head.appendChild(styleEl);
     }
 });
+document.addEventListener('DOMContentLoaded', function() {
+    // מצא את הסקשן או האלמנט שמכיל את הכותרת עם הקו
+    var heroSection = document.querySelector('.hero-gradient, [id="home"], section[class*="hero"]');
+    
+    if (heroSection) {
+        // חפש את הכותרת הראשית
+        var headings = heroSection.querySelectorAll('h1, h2');
+        
+        headings.forEach(function(heading) {
+            if (heading.textContent.includes('מימון') || heading.textContent.includes('קבוצת חן')) {
+                // שפר את הקו כך שיראה אסתטי יותר
+                var styleEl = document.createElement('style');
+                styleEl.textContent = `
+                    /* עיצוב לקו שיהיה יפה ומכוון */
+                    ${heading.tagName.toLowerCase()}${heading.id ? '#'+heading.id : ''}${heading.className ? '.'+heading.className.split(' ').join('.') : ''}::after {
+                        content: "" !important;
+                        display: block !important;
+                        width: 80px !important; /* רוחב קצר יותר */
+                        height: 3px !important; /* עובי מוגדר */
+                        background-color: white !important; /* צבע לבן ברור */
+                        margin: 10px auto 20px !important; /* מרווח אוויר יפה מסביב */
+                        border-radius: 2px !important; /* קצוות מעוגלים קלות */
+                        opacity: 0.8 !important; /* שקיפות קלה לעידון */
+                    }
+                `;
+                document.head.appendChild(styleEl);
+                
+                // אם זה לא הפסאודו-אלמנט, יתכן שזה אלמנט נפרד
+                var dividers = heroSection.querySelectorAll('.hero-divider, .divider, hr, [class*="line"], [class*="underline"]');
+                dividers.forEach(function(divider) {
+                    divider.style.width = '80px';
+                    divider.style.height = '3px';
+                    divider.style.backgroundColor = 'white';
+                    divider.style.margin = '10px auto 20px';
+                    divider.style.borderRadius = '2px';
+                    divider.style.opacity = '0.8';
+                    divider.style.display = 'block';
+                });
+            }
+        });
+    }
+});
