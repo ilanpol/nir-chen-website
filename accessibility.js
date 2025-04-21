@@ -160,3 +160,50 @@
         }, 1);
     }
 })();
+// הוסף את זה לקובץ ה-accessibility.js שכבר יצרת
+window.addEventListener('DOMContentLoaded', function() {
+    // מחפש את הכותרת שמכילה את המילה "מימון"
+    let headings = document.querySelectorAll('h1, h2, h3, div');
+    headings.forEach(function(heading) {
+        if (heading.innerText && heading.innerText.includes('מימון')) {
+            // מסיר את כל הסגנונות שעשויים ליצור קו
+            heading.style.borderBottom = 'none';
+            heading.style.textDecoration = 'none';
+            heading.style.boxShadow = 'none';
+            
+            // מסיר גם את הפסאודו-אלמנטים אם יש כאלה
+            let style = document.createElement('style');
+            style.innerHTML = `
+                #${heading.id}::after, #${heading.id}::before,
+                .${heading.className.split(' ').join('::')}::after, .${heading.className.split(' ').join('::')}::before {
+                    display: none !important;
+                    content: none !important;
+                    border: none !important;
+                }
+            `;
+            document.head.appendChild(style);
+        }
+    });
+    
+    // ניסיון ספציפי יותר - מחפש את האלמנט בהתבסס על מיקום במבנה העמוד
+    let heroSection = document.querySelector('.hero-gradient, [id="home"], section[class*="hero"]');
+    if (heroSection) {
+        let mainHeadings = heroSection.querySelectorAll('h1, h2');
+        mainHeadings.forEach(function(heading) {
+            heading.style.borderBottom = 'none';
+            heading.style.textDecoration = 'none';
+            let afterStyle = window.getComputedStyle(heading, '::after');
+            if (afterStyle.content || afterStyle.borderBottom) {
+                let style = document.createElement('style');
+                style.innerHTML = `
+                    ${heading.tagName.toLowerCase()}${heading.id ? '#'+heading.id : ''}${heading.className ? '.'+heading.className.split(' ').join('.') : ''}::after {
+                        display: none !important;
+                        content: none !important;
+                        border: none !important;
+                    }
+                `;
+                document.head.appendChild(style);
+            }
+        });
+    }
+});
