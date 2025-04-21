@@ -34,6 +34,90 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     });
+    // הוסף קוד זה ל-accessibility.js שלך
+window.addEventListener('DOMContentLoaded', function() {
+    // מוצא את הסקשן של ההירו
+    var heroSection = document.querySelector('.hero-gradient, section[id="home"]');
+    if (heroSection) {
+        // מצא את הכותרת עם "מימון" בתוכה
+        var allHeadings = heroSection.querySelectorAll('h1, h2, span');
+        allHeadings.forEach(function(heading) {
+            if (heading.textContent.includes('מימון')) {
+                console.log('מצאתי את הכותרת עם "מימון":', heading);
+                
+                // הוסף סגנון ישירות לאלמנט
+                heading.style.position = 'relative';
+                heading.style.borderBottom = 'none';
+                heading.style.textDecoration = 'none';
+                
+                // הוסף סגנון שיבטל פסאודו-אלמנטים
+                var style = document.createElement('style');
+                style.textContent = `
+                    ${heading.tagName.toLowerCase()}${heading.id ? '#'+heading.id : ''}${heading.className ? '.'+heading.className.split(' ').join('.') : ''}::after,
+                    ${heading.tagName.toLowerCase()}${heading.id ? '#'+heading.id : ''}${heading.className ? '.'+heading.className.split(' ').join('.') : ''}::before {
+                        display: none !important;
+                        content: none !important;
+                        border-bottom: none !important;
+                    }
+                `;
+                document.head.appendChild(style);
+                
+                // אם יש קו בתוך הכותרת (אולי אלמנט נפרד)
+                var underlines = heading.querySelectorAll('hr, .underline, [class*="line"], [class*="border"]');
+                underlines.forEach(function(underline) {
+                    underline.style.display = 'none';
+                });
+                
+                // בדיקה ספציפית לאלמנט מיד אחרי הכותרת
+                var nextElement = heading.nextElementSibling;
+                if (nextElement && (nextElement.classList.contains('underline') || 
+                                   nextElement.tagName === 'HR' || 
+                                   window.getComputedStyle(nextElement).height === '1px' ||
+                                   window.getComputedStyle(nextElement).height === '2px' ||
+                                   window.getComputedStyle(nextElement).height === '3px')) {
+                    nextElement.style.display = 'none';
+                }
+            }
+        });
+        
+        // בדיקה ספציפית לאלמנט h1 בהירו סקשן
+        var mainHeading = heroSection.querySelector('h1, .hero-title');
+        if (mainHeading) {
+            // הוסף סגנון שיבטל קו תחתון
+            var style = document.createElement('style');
+            style.textContent = `
+                .hero-gradient h1::after, 
+                .hero-gradient h1::before,
+                section[id="home"] h1::after,
+                section[id="home"] h1::before,
+                .hero-title::after,
+                .hero-title::before,
+                .hero-title-shadow::after,
+                .hero-title-shadow::before {
+                    display: none !important;
+                    content: none !important;
+                    border-bottom: none !important;
+                }
+                
+                .hero-gradient h1,
+                section[id="home"] h1,
+                .hero-title,
+                .hero-title-shadow {
+                    border-bottom: none !important;
+                    text-decoration: none !important;
+                    box-shadow: none !important;
+                }
+            `;
+            document.head.appendChild(style);
+        }
+        
+        // בדיקה ספציפית לאלמנט שיכול להיות הקו עצמו
+        var possibleLines = heroSection.querySelectorAll('.hero-divider, .divider, .line, hr, [class*="line"], [class*="divider"], [class*="border"]');
+        possibleLines.forEach(function(line) {
+            line.style.display = 'none';
+        });
+    }
+});
     
     // FAQ Toggle
     const faqQuestions = document.querySelectorAll('.faq-question');
