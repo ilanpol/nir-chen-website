@@ -699,3 +699,65 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   }
 });
+// הוסף קוד זה ל-accessibility.js שלך
+document.addEventListener('DOMContentLoaded', function() {
+    // מוסיף סגנון גלובלי שאמור לבטל את הקו
+    var style = document.createElement('style');
+    style.textContent = `
+        /* טיפול בקו תחתון בכותרת הראשית */
+        .hero-gradient h1::after,
+        .hero-gradient h2::after,
+        #home h1::after,
+        #home h2::after,
+        section[class*="hero"] h1::after,
+        section[class*="hero"] h2::after,
+        section[id="home"] h1::after,
+        section[id="home"] h2::after,
+        /* כיסוי יותר מקיף */
+        section[class*="hero"] *::after,
+        section[id="home"] *::after,
+        /* כיסוי ספציפי למילה 'מימון' */
+        *:contains("מימון")::after {
+            display: none !important;
+            content: none !important;
+            border: none !important;
+            border-bottom: none !important;
+            height: 0 !important;
+            background: none !important;
+        }
+    `;
+    document.head.appendChild(style);
+    
+    // פתרון חלופי: הוסף שכבת כיסוי מעל הקו
+    setTimeout(function() {
+        var heroSection = document.querySelector('.hero-gradient, [id="home"], section[class*="hero"]');
+        if (heroSection) {
+            var headings = heroSection.querySelectorAll('h1, h2');
+            headings.forEach(function(heading) {
+                if (heading.textContent.includes('מימון') || heading.textContent.includes('קבוצת חן')) {
+                    // בדוק אם יש כבר שכבת כיסוי
+                    if (!heading.querySelector('.line-cover')) {
+                        // יצירת שכבת כיסוי לקו
+                        heading.style.position = 'relative';
+                        var cover = document.createElement('div');
+                        cover.className = 'line-cover';
+                        cover.style.position = 'absolute';
+                        cover.style.bottom = '0';
+                        cover.style.left = '0';
+                        cover.style.right = '0';
+                        cover.style.height = '3px'; // גובה משוער של הקו
+                        cover.style.backgroundColor = getComputedStyle(heroSection).backgroundColor; // צבע הרקע של הסקשן
+                        cover.style.zIndex = '10';
+                        heading.appendChild(cover);
+                    }
+                }
+            });
+            
+            // בדיקה נוספת: האם קיים אלמנט ספציפי שהוא הקו?
+            var possibleLines = heroSection.querySelectorAll('.hero-divider, .divider, hr, [class*="line"], [class*="underline"]');
+            possibleLines.forEach(function(line) {
+                line.style.display = 'none';
+            });
+        }
+    }, 500); // המתנה קצרה לוודא שהדף נטען במלואו
+});
