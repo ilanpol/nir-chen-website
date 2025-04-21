@@ -804,3 +804,28 @@ document.addEventListener('DOMContentLoaded', function() {
         document.body.appendChild(cover3);
     })();
 });
+// קוד להכנסה ישירות לקונסולת הדפדפן לבדיקה מהירה
+// רץ על כל האלמנטים באתר ומחפש את אלה שמייצרים קו בתחתית
+var allElements = document.querySelectorAll('*');
+allElements.forEach(function(el) {
+    var style = window.getComputedStyle(el);
+    // בודק אם יש קו תחתון
+    if (style.borderBottom && style.borderBottom !== 'none' && style.borderBottom.includes('px')) {
+        console.log('Found element with border-bottom:', el);
+        el.style.borderBottom = 'none';
+    }
+    // בודק גם ::after פסאודו אלמנטים
+    var afterStyle = window.getComputedStyle(el, '::after');
+    if (afterStyle.content && afterStyle.content !== 'none') {
+        console.log('Found element with ::after content:', el);
+        // יוצר סגנון שמסתיר את ה-::after
+        var styleEl = document.createElement('style');
+        styleEl.textContent = `
+            #${el.id}.${el.className.split(' ').join('.')}::after {
+                display: none !important;
+                content: none !important;
+            }
+        `;
+        document.head.appendChild(styleEl);
+    }
+});
