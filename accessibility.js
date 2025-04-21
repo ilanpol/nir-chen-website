@@ -1,117 +1,162 @@
-// accessibility.js
-document.addEventListener('DOMContentLoaded', function() {
-  // יצירת כפתור הנגישות והוספתו לדף
-  const accessBtn = document.createElement('button');
-  accessBtn.innerHTML = 'נג';
-  accessBtn.setAttribute('aria-label', 'אפשרויות נגישות');
-  accessBtn.style.position = 'fixed';
-  accessBtn.style.bottom = '20px';
-  accessBtn.style.left = '20px';
-  accessBtn.style.width = '50px';
-  accessBtn.style.height = '50px';
-  accessBtn.style.backgroundColor = '#0c4a6e';
-  accessBtn.style.color = 'white';
-  accessBtn.style.border = 'none';
-  accessBtn.style.borderRadius = '50%';
-  accessBtn.style.fontSize = '16px';
-  accessBtn.style.fontWeight = 'bold';
-  accessBtn.style.cursor = 'pointer';
-  accessBtn.style.zIndex = '9999';
-  accessBtn.style.boxShadow = '0 4px 10px rgba(0, 0, 0, 0.2)';
-  
-  // הוספת כפתור לעמוד
-  document.body.appendChild(accessBtn);
-  
-  // מטפל באירוע לחיצה
-  accessBtn.addEventListener('click', toggleAccessibilityMenu);
-  
-  // יצירת תפריט הנגישות
-  const accessMenu = document.createElement('div');
-  accessMenu.innerHTML = `
-    <h3 style="margin-top: 0; margin-bottom: 10px; font-weight: bold; color: #0c4a6e;">הגדרות נגישות</h3>
-    <div style="margin-bottom: 8px;">
-      <input type="checkbox" id="access-larger-text" style="margin-left: 5px;">
-      <label for="access-larger-text">הגדלת טקסט</label>
-    </div>
-    <div style="margin-bottom: 8px;">
-      <input type="checkbox" id="access-high-contrast" style="margin-left: 5px;">
-      <label for="access-high-contrast">ניגודיות גבוהה</label>
-    </div>
-    <button id="access-reset" style="width: 100%; background-color: #0c4a6e; color: white; border: none; padding: 8px; border-radius: 4px; cursor: pointer;">
-      איפוס הגדרות
-    </button>
-  `;
-  accessMenu.style.position = 'fixed';
-  accessMenu.style.bottom = '80px';
-  accessMenu.style.left = '20px';
-  accessMenu.style.width = '200px';
-  accessMenu.style.backgroundColor = 'white';
-  accessMenu.style.color = '#333';
-  accessMenu.style.padding = '15px';
-  accessMenu.style.borderRadius = '8px';
-  accessMenu.style.boxShadow = '0 4px 15px rgba(0, 0, 0, 0.2)';
-  accessMenu.style.zIndex = '9999';
-  accessMenu.style.display = 'none';
-  accessMenu.style.border = '2px solid #0c4a6e';
-  accessMenu.id = 'accessibility-menu';
-  
-  // הוספת תפריט לעמוד
-  document.body.appendChild(accessMenu);
-  
-  // מטפל בפונקציונליות התפריט
-  document.getElementById('access-larger-text').addEventListener('change', function() {
-    if (this.checked) {
-      document.body.style.fontSize = '120%';
-    } else {
-      document.body.style.fontSize = '';
-    }
-  });
-  
-  document.getElementById('access-high-contrast').addEventListener('change', function() {
-    if (this.checked) {
-      document.body.style.backgroundColor = 'black';
-      document.body.style.color = 'white';
-      const links = document.querySelectorAll('a, h1, h2, h3');
-      links.forEach(link => {
-        link.style.color = 'yellow';
-      });
-    } else {
-      document.body.style.backgroundColor = '';
-      document.body.style.color = '';
-      const links = document.querySelectorAll('a, h1, h2, h3');
-      links.forEach(link => {
-        link.style.color = '';
-      });
-    }
-  });
-  
-  document.getElementById('access-reset').addEventListener('click', function() {
-    document.getElementById('access-larger-text').checked = false;
-    document.getElementById('access-high-contrast').checked = false;
-    document.body.style.fontSize = '';
-    document.body.style.backgroundColor = '';
-    document.body.style.color = '';
-    const links = document.querySelectorAll('a, h1, h2, h3');
-    links.forEach(link => {
-      link.style.color = '';
+// קוד מייצר כפתור נגישות פשוט
+(function() {
+    // יצירת סגנונות CSS למאפייני הנגישות
+    var styleEl = document.createElement('style');
+    styleEl.innerHTML = `
+        .a11y-btn {
+            position: fixed;
+            left: 20px;
+            bottom: 20px;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background-color: #0c4a6e;
+            color: white;
+            font-weight: bold;
+            border: none;
+            cursor: pointer;
+            z-index: 99999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+        }
+        .a11y-menu {
+            position: fixed;
+            left: 20px;
+            bottom: 70px;
+            width: 220px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+            z-index: 99999;
+            padding: 15px;
+            display: none;
+            border: 1px solid #0c4a6e;
+            color: #333;
+            direction: rtl;
+            text-align: right;
+        }
+        .a11y-menu h3 {
+            margin-top: 0;
+            margin-bottom: 10px;
+            color: #0c4a6e;
+            font-weight: bold;
+            font-size: 16px;
+        }
+        .a11y-option {
+            display: flex;
+            align-items: center;
+            margin-bottom: 8px;
+        }
+        .a11y-option input {
+            margin-left: 8px;
+        }
+        .a11y-menu button {
+            width: 100%;
+            padding: 8px;
+            background-color: #0c4a6e;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        .a11y-larger-text {
+            font-size: 120% !important;
+            line-height: 1.5 !important;
+        }
+        .a11y-high-contrast {
+            background-color: black !important;
+            color: white !important;
+        }
+        .a11y-high-contrast a,
+        .a11y-high-contrast button,
+        .a11y-high-contrast h1,
+        .a11y-high-contrast h2,
+        .a11y-high-contrast h3,
+        .a11y-high-contrast h4 {
+            color: yellow !important;
+        }
+    `;
+    document.head.appendChild(styleEl);
+
+    // המתן לטעינת ה-DOM לפני הוספת אלמנטים
+    window.addEventListener('DOMContentLoaded', function() {
+        // יצירת כפתור הנגישות
+        var a11yBtn = document.createElement('button');
+        a11yBtn.className = 'a11y-btn';
+        a11yBtn.textContent = 'נג';
+        a11yBtn.setAttribute('aria-label', 'פתח תפריט נגישות');
+        document.body.appendChild(a11yBtn);
+
+        // יצירת תפריט נגישות
+        var a11yMenu = document.createElement('div');
+        a11yMenu.className = 'a11y-menu';
+        a11yMenu.innerHTML = `
+            <h3>הגדרות נגישות</h3>
+            <div class="a11y-option">
+                <input type="checkbox" id="a11y-larger-text">
+                <label for="a11y-larger-text">הגדלת טקסט</label>
+            </div>
+            <div class="a11y-option">
+                <input type="checkbox" id="a11y-high-contrast">
+                <label for="a11y-high-contrast">ניגודיות גבוהה</label>
+            </div>
+            <button id="a11y-reset">איפוס הגדרות</button>
+        `;
+        document.body.appendChild(a11yMenu);
+
+        // אירוע לחיצה על כפתור פתיחת התפריט
+        a11yBtn.addEventListener('click', function(e) {
+            e.stopPropagation();
+            if (a11yMenu.style.display === 'block') {
+                a11yMenu.style.display = 'none';
+            } else {
+                a11yMenu.style.display = 'block';
+            }
+        });
+
+        // אירוע לחיצה על הגדלת טקסט
+        document.getElementById('a11y-larger-text').addEventListener('change', function() {
+            if (this.checked) {
+                document.body.classList.add('a11y-larger-text');
+            } else {
+                document.body.classList.remove('a11y-larger-text');
+            }
+        });
+
+        // אירוע לחיצה על ניגודיות גבוהה
+        document.getElementById('a11y-high-contrast').addEventListener('change', function() {
+            if (this.checked) {
+                document.body.classList.add('a11y-high-contrast');
+            } else {
+                document.body.classList.remove('a11y-high-contrast');
+            }
+        });
+
+        // אירוע לחיצה על איפוס הגדרות
+        document.getElementById('a11y-reset').addEventListener('click', function() {
+            document.getElementById('a11y-larger-text').checked = false;
+            document.getElementById('a11y-high-contrast').checked = false;
+            document.body.classList.remove('a11y-larger-text', 'a11y-high-contrast');
+            alert('הגדרות הנגישות אופסו בהצלחה');
+        });
+
+        // סגירת התפריט בלחיצה מחוץ לאזור
+        document.addEventListener('click', function(e) {
+            if (e.target !== a11yBtn && !a11yMenu.contains(e.target) && a11yMenu.style.display === 'block') {
+                a11yMenu.style.display = 'none';
+            }
+        });
     });
-    alert('ההגדרות אופסו בהצלחה');
-  });
-  
-  // סגירת התפריט בלחיצה מחוץ לאזור
-  document.addEventListener('click', function(event) {
-    const menu = document.getElementById('accessibility-menu');
-    if (event.target !== accessBtn && !menu.contains(event.target) && menu.style.display === 'block') {
-      menu.style.display = 'none';
+
+    // תגית מחליפה ל-DOMContentLoaded במקרה שהדף כבר נטען
+    if (document.readyState === 'complete' || document.readyState === 'interactive') {
+        setTimeout(function() {
+            var event = document.createEvent('Event');
+            event.initEvent('DOMContentLoaded', true, false);
+            document.dispatchEvent(event);
+        }, 1);
     }
-  });
-  
-  function toggleAccessibilityMenu() {
-    const menu = document.getElementById('accessibility-menu');
-    if (menu.style.display === 'block') {
-      menu.style.display = 'none';
-    } else {
-      menu.style.display = 'block';
-    }
-  }
-});
+})();
