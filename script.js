@@ -761,3 +761,46 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }, 500); // המתנה קצרה לוודא שהדף נטען במלואו
 });
+// קוד להכנסה לקובץ HTML או JavaScript
+document.addEventListener('DOMContentLoaded', function() {
+    // פונקציה שמתבצעת באופן מיידי
+    (function coverLine() {
+        // יצירת אלמנט כיסוי
+        var cover = document.createElement('div');
+        cover.style.position = 'absolute';
+        cover.style.width = '80px';  // רוחב הקו המשוער
+        cover.style.height = '3px';   // גובה הקו המשוער
+        cover.style.backgroundColor = '#186099'; // צבע כחול זהה לרקע
+        cover.style.left = '50%';
+        cover.style.marginLeft = '-40px'; // מחצית מהרוחב, למרכוז
+        cover.style.bottom = '330px';  // מיקום משוער
+        cover.style.zIndex = '9999';   // שכבה עליונה
+        
+        // הוספת האלמנט לעמוד
+        document.body.appendChild(cover);
+        
+        // ניסיון שני עם מיקום שונה (למקרה שהראשון לא מדויק)
+        var cover2 = document.createElement('div');
+        cover2.style.position = 'absolute';
+        cover2.style.width = '100px';
+        cover2.style.height = '3px';
+        cover2.style.backgroundColor = '#186099';
+        cover2.style.left = '50%';
+        cover2.style.marginLeft = '-50px';
+        cover2.style.bottom = '350px';
+        cover2.style.zIndex = '9999';
+        document.body.appendChild(cover2);
+        
+        // ניסיון שלישי עם מיקום נוסף
+        var cover3 = document.createElement('div');
+        cover3.style.position = 'absolute';
+        cover3.style.width = '120px';
+        cover3.style.height = '3px';
+        cover3.style.backgroundColor = '#186099';
+        cover3.style.left = '50%';
+        cover3.style.marginLeft = '-60px';
+        cover3.style.bottom = '370px';
+        cover3.style.zIndex = '9999';
+        document.body.appendChild(cover3);
+    })();
+});
