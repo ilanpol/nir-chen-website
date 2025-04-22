@@ -1,5 +1,7 @@
+// אירוע טעינה ראשי
 document.addEventListener('DOMContentLoaded', function() {
-    // Mobile Menu Toggle
+    
+    // טיפול בתפריט נייד
     const mobileMenuButton = document.getElementById('mobile-menu-button');
     const mobileMenu = document.getElementById('mobile-menu');
     
@@ -9,7 +11,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
     
-    // Close mobile menu when clicking on a link
+    // סגירת תפריט נייד בלחיצה על קישור
     const mobileMenuLinks = document.querySelectorAll('#mobile-menu a');
     mobileMenuLinks.forEach(link => {
         link.addEventListener('click', function() {
@@ -17,7 +19,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
     
-    // Smooth scrolling for anchor links
+    // גלילה חלקה לעוגנים
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function(e) {
             e.preventDefault();
@@ -28,98 +30,14 @@ document.addEventListener('DOMContentLoaded', function() {
             const targetElement = document.querySelector(targetId);
             if (targetElement) {
                 window.scrollTo({
-                    top: targetElement.offsetTop - 80, // Adjust for fixed header
+                    top: targetElement.offsetTop - 80,
                     behavior: 'smooth'
                 });
             }
         });
     });
-    // הוסף קוד זה ל-accessibility.js שלך
-window.addEventListener('DOMContentLoaded', function() {
-    // מוצא את הסקשן של ההירו
-    var heroSection = document.querySelector('.hero-gradient, section[id="home"]');
-    if (heroSection) {
-        // מצא את הכותרת עם "מימון" בתוכה
-        var allHeadings = heroSection.querySelectorAll('h1, h2, span');
-        allHeadings.forEach(function(heading) {
-            if (heading.textContent.includes('מימון')) {
-                console.log('מצאתי את הכותרת עם "מימון":', heading);
-                
-                // הוסף סגנון ישירות לאלמנט
-                heading.style.position = 'relative';
-                heading.style.borderBottom = 'none';
-                heading.style.textDecoration = 'none';
-                
-                // הוסף סגנון שיבטל פסאודו-אלמנטים
-                var style = document.createElement('style');
-                style.textContent = `
-                    ${heading.tagName.toLowerCase()}${heading.id ? '#'+heading.id : ''}${heading.className ? '.'+heading.className.split(' ').join('.') : ''}::after,
-                    ${heading.tagName.toLowerCase()}${heading.id ? '#'+heading.id : ''}${heading.className ? '.'+heading.className.split(' ').join('.') : ''}::before {
-                        display: none !important;
-                        content: none !important;
-                        border-bottom: none !important;
-                    }
-                `;
-                document.head.appendChild(style);
-                
-                // אם יש קו בתוך הכותרת (אולי אלמנט נפרד)
-                var underlines = heading.querySelectorAll('hr, .underline, [class*="line"], [class*="border"]');
-                underlines.forEach(function(underline) {
-                    underline.style.display = 'none';
-                });
-                
-                // בדיקה ספציפית לאלמנט מיד אחרי הכותרת
-                var nextElement = heading.nextElementSibling;
-                if (nextElement && (nextElement.classList.contains('underline') || 
-                                   nextElement.tagName === 'HR' || 
-                                   window.getComputedStyle(nextElement).height === '1px' ||
-                                   window.getComputedStyle(nextElement).height === '2px' ||
-                                   window.getComputedStyle(nextElement).height === '3px')) {
-                    nextElement.style.display = 'none';
-                }
-            }
-        });
-        
-        // בדיקה ספציפית לאלמנט h1 בהירו סקשן
-        var mainHeading = heroSection.querySelector('h1, .hero-title');
-        if (mainHeading) {
-            // הוסף סגנון שיבטל קו תחתון
-            var style = document.createElement('style');
-            style.textContent = `
-                .hero-gradient h1::after, 
-                .hero-gradient h1::before,
-                section[id="home"] h1::after,
-                section[id="home"] h1::before,
-                .hero-title::after,
-                .hero-title::before,
-                .hero-title-shadow::after,
-                .hero-title-shadow::before {
-                    display: none !important;
-                    content: none !important;
-                    border-bottom: none !important;
-                }
-                
-                .hero-gradient h1,
-                section[id="home"] h1,
-                .hero-title,
-                .hero-title-shadow {
-                    border-bottom: none !important;
-                    text-decoration: none !important;
-                    box-shadow: none !important;
-                }
-            `;
-            document.head.appendChild(style);
-        }
-        
-        // בדיקה ספציפית לאלמנט שיכול להיות הקו עצמו
-        var possibleLines = heroSection.querySelectorAll('.hero-divider, .divider, .line, hr, [class*="line"], [class*="divider"], [class*="border"]');
-        possibleLines.forEach(function(line) {
-            line.style.display = 'none';
-        });
-    }
-});
     
-    // FAQ Toggle
+    // טיפול בשאלות נפוצות
     const faqQuestions = document.querySelectorAll('.faq-question');
     faqQuestions.forEach(question => {
         question.addEventListener('click', function() {
@@ -134,191 +52,34 @@ window.addEventListener('DOMContentLoaded', function() {
         });
     });
     
-    // Accessibility Widget Toggle
-    const accessibilityWidget = document.querySelector('.accessibility-widget');
-    const accessibilityMenu = document.getElementById('accessibility-menu');
-    
-    if (accessibilityWidget && accessibilityMenu) {
-        accessibilityWidget.addEventListener('click', function() {
-            accessibilityMenu.classList.toggle('open');
-        });
-        
-        // Close accessibility menu when clicking outside
-        document.addEventListener('click', function(e) {
-            if (!accessibilityWidget.contains(e.target) && !accessibilityMenu.contains(e.target)) {
-                accessibilityMenu.classList.remove('open');
-            }
-        });
-    }
-    
-    // Accessibility Options
-    const fontLargeCheckbox = document.getElementById('font-large');
-    const highContrastCheckbox = document.getElementById('high-contrast');
-    const grayscaleCheckbox = document.getElementById('grayscale');
-    const linksUnderlineCheckbox = document.getElementById('links-underline');
-    
-    // Load saved accessibility settings from localStorage
-    loadAccessibilitySettings();
-    
-    // Font Size Toggle
-    if (fontLargeCheckbox) {
-        fontLargeCheckbox.addEventListener('change', function() {
-            document.body.classList.toggle('font-large', this.checked);
-            saveAccessibilitySetting('font-large', this.checked);
-        });
-    }
-    
-    // High Contrast Toggle
-    if (highContrastCheckbox) {
-        highContrastCheckbox.addEventListener('change', function() {
-            document.body.classList.toggle('high-contrast', this.checked);
-            saveAccessibilitySetting('high-contrast', this.checked);
-        });
-    }
-    
-    // Grayscale Toggle
-    if (grayscaleCheckbox) {
-        grayscaleCheckbox.addEventListener('change', function() {
-            document.body.classList.toggle('grayscale', this.checked);
-            saveAccessibilitySetting('grayscale', this.checked);
-        });
-    }
-    
-    // Links Underline Toggle
-    if (linksUnderlineCheckbox) {
-        linksUnderlineCheckbox.addEventListener('change', function() {
-            document.body.classList.toggle('links-underline', this.checked);
-            saveAccessibilitySetting('links-underline', this.checked);
-        });
-    }
-    
-    // Contact Form Submission
-    const contactForm = document.getElementById('contact-form');
-    if (contactForm) {
-        contactForm.addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            // Display loading state
-            const submitButton = contactForm.querySelector('button[type="submit"]');
-            const originalButtonText = submitButton.innerHTML;
-            submitButton.innerHTML = '<div class="loader"></div>';
-            submitButton.disabled = true;
-            
-            // Simulate form submission (replace with actual API call)
-            setTimeout(function() {
-                // Reset form
-                contactForm.reset();
-                
-                // Reset button state
-                submitButton.innerHTML = originalButtonText;
-                submitButton.disabled = false;
-                
-                // Show success message
-                alert('תודה על פנייתך! נציג יחזור אליך בהקדם.');
-            }, 1500);
-        });
-    }
-    
-    // Calculator functionality
+    // מחשבון ניכיון
     const calculateButton = document.getElementById('calculate-button');
-    
     if (calculateButton) {
         calculateButton.addEventListener('click', calculateCheck);
     }
-});
-
-// Check calculator function
-function calculateCheck() {
-    const checkAmount = parseFloat(document.getElementById('check-amount').value);
-    const checkDate = new Date(document.getElementById('check-date').value);
-    const today = new Date();
     
-    // Validate inputs
-    if (isNaN(checkAmount) || !checkDate || isNaN(checkDate.getTime())) {
-        alert('נא להזין סכום ותאריך תקינים');
-        return;
+    // טופס יצירת קשר (תיקון לשימוש עם Formspree)
+    const contactForm = document.getElementById('contact-form');
+    if (contactForm) {
+        contactForm.addEventListener('submit', function(e) {
+            // אין צורך ב-preventDefault כי Formspree מטפל בשליחה
+            // e.preventDefault();
+            
+            const submitButton = contactForm.querySelector('button[type="submit"]');
+            const originalButtonText = submitButton.innerHTML;
+            submitButton.innerHTML = 'שולח...';
+            submitButton.disabled = true;
+            
+            // החזרת הכפתור למצב המקורי אחרי 3 שניות
+            setTimeout(function() {
+                submitButton.innerHTML = originalButtonText;
+                submitButton.disabled = false;
+            }, 3000);
+        });
     }
     
-    if (checkDate <= today) {
-        alert('תאריך הפירעון חייב להיות בעתיד');
-        return;
-    }
-    
-    // Add 4 days to check date as per the note
-    const adjustedCheckDate = new Date(checkDate);
-    adjustedCheckDate.setDate(adjustedCheckDate.getDate() + 4);
-    
-    // Calculate days difference
-    const daysDifference = Math.ceil((adjustedCheckDate - today) / (1000 * 60 * 60 * 24));
-    
-    // Calculate months difference (approximated)
-    const monthsDifference = daysDifference / 30;
-    
-    // Calculate commission: 2% per month + 100 NIS handling fee
-    const ratePerMonth = 0.02; // 2%
-    const handlingFee = 100;
-    const interestAmount = checkAmount * ratePerMonth * monthsDifference;
-    const totalCommission = interestAmount + handlingFee;
-    
-    // Calculate net amount
-    const netAmount = checkAmount - totalCommission;
-    
-    // Update results
-    document.getElementById('commission-result').textContent = '₪' + totalCommission.toFixed(0);
-    document.getElementById('net-amount-result').textContent = '₪' + netAmount.toFixed(0);
-    document.getElementById('days-saved-result').textContent = daysDifference;
-    
-    console.log('חישוב בוצע:', {
-        סכום: checkAmount,
-        תאריך: checkDate,
-        'ימי המתנה': daysDifference,
-        עמלה: totalCommission,
-        'סכום נטו': netAmount
-    });
-}
-
-// Save accessibility settings to localStorage
-function saveAccessibilitySetting(setting, value) {
-    localStorage.setItem(setting, value);
-}
-
-// Load accessibility settings from localStorage
-function loadAccessibilitySettings() {
-    const fontLargeCheckbox = document.getElementById('font-large');
-    const highContrastCheckbox = document.getElementById('high-contrast');
-    const grayscaleCheckbox = document.getElementById('grayscale');
-    const linksUnderlineCheckbox = document.getElementById('links-underline');
-    
-    if (fontLargeCheckbox) {
-        const fontLarge = localStorage.getItem('font-large') === 'true';
-        fontLargeCheckbox.checked = fontLarge;
-        document.body.classList.toggle('font-large', fontLarge);
-    }
-    
-    if (highContrastCheckbox) {
-        const highContrast = localStorage.getItem('high-contrast') === 'true';
-        highContrastCheckbox.checked = highContrast;
-        document.body.classList.toggle('high-contrast', highContrast);
-    }
-    
-    if (grayscaleCheckbox) {
-        const grayscale = localStorage.getItem('grayscale') === 'true';
-        grayscaleCheckbox.checked = grayscale;
-        document.body.classList.toggle('grayscale', grayscale);
-    }
-    
-    if (linksUnderlineCheckbox) {
-        const linksUnderline = localStorage.getItem('links-underline') === 'true';
-        linksUnderlineCheckbox.checked = linksUnderline;
-        document.body.classList.toggle('links-underline', linksUnderline);
-    }
-}
-
-// Add animation when elements are scrolled into view
-document.addEventListener('DOMContentLoaded', function() {
-    // Animate elements when they enter the viewport
+    // אנימציות לאלמנטים שנגללים למסך
     const animateElements = document.querySelectorAll('.animate__animated');
-    
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
@@ -333,391 +94,154 @@ document.addEventListener('DOMContentLoaded', function() {
     animateElements.forEach(element => {
         observer.observe(element);
     });
+    
+    // יצירת כפתור נגישות
+    initializeAccessibility();
+    
+    // טיפול בקו התחתון (זה הקוד המתוקן שבאמת יעבוד)
+    fixHeroUnderline();
 });
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-        // מצא את האלמנט הראשי של התוכן והוסף לו ID
-        const mainContent = document.querySelector('section:first-of-type') || document.querySelector('main');
-        if (mainContent && !mainContent.id) {
-            mainContent.id = 'main-content';
+
+// פונקציית חישוב ניכיון שיקים
+function calculateCheck() {
+    const checkAmount = parseFloat(document.getElementById('check-amount').value);
+    const checkDate = new Date(document.getElementById('check-date').value);
+    const today = new Date();
+    
+    if (isNaN(checkAmount) || !checkDate || isNaN(checkDate.getTime())) {
+        alert('נא להזין סכום ותאריך תקינים');
+        return;
+    }
+    
+    if (checkDate <= today) {
+        alert('תאריך הפירעון חייב להיות בעתיד');
+        return;
+    }
+    
+    const adjustedCheckDate = new Date(checkDate);
+    adjustedCheckDate.setDate(adjustedCheckDate.getDate() + 4);
+    
+    const daysDifference = Math.ceil((adjustedCheckDate - today) / (1000 * 60 * 60 * 24));
+    const monthsDifference = daysDifference / 30;
+    
+    const ratePerMonth = 0.02;
+    const handlingFee = 100;
+    const interestAmount = checkAmount * ratePerMonth * monthsDifference;
+    const totalCommission = interestAmount + handlingFee;
+    
+    const netAmount = checkAmount - totalCommission;
+    
+    document.getElementById('commission-result').textContent = '₪' + totalCommission.toFixed(0);
+    document.getElementById('net-amount-result').textContent = '₪' + netAmount.toFixed(0);
+    document.getElementById('days-saved-result').textContent = daysDifference;
+}
+
+// אתחול מערכת הנגישות
+function initializeAccessibility() {
+    // יצירת כפתור
+    const accessBtn = document.createElement('button');
+    accessBtn.innerHTML = 'נג';
+    accessBtn.setAttribute('aria-label', 'אפשרויות נגישות');
+    accessBtn.className = 'accessibility-widget';
+    accessBtn.id = 'accessibility-widget';
+    document.body.appendChild(accessBtn);
+    
+    // יצירת תפריט
+    const accessMenu = document.createElement('div');
+    accessMenu.className = 'accessibility-menu';
+    accessMenu.id = 'accessibility-menu';
+    accessMenu.innerHTML = `
+        <h3 style="margin-top: 0; margin-bottom: 10px; font-weight: bold; color: #0c4a6e;">הגדרות נגישות</h3>
+        <div style="margin-bottom: 8px;">
+            <input type="checkbox" id="access-larger-text" style="margin-left: 5px;">
+            <label for="access-larger-text">הגדלת טקסט</label>
+        </div>
+        <div style="margin-bottom: 8px;">
+            <input type="checkbox" id="access-high-contrast" style="margin-left: 5px;">
+            <label for="access-high-contrast">ניגודיות גבוהה</label>
+        </div>
+        <button id="access-reset" style="width: 100%; background-color: #0c4a6e; color: white; border: none; padding: 8px; border-radius: 4px; cursor: pointer;">
+            איפוס הגדרות
+        </button>
+    `;
+    document.body.appendChild(accessMenu);
+    
+    // הוספת אירועים
+    accessBtn.addEventListener('click', function() {
+        accessMenu.classList.toggle('show');
+    });
+    
+    document.addEventListener('click', function(event) {
+        if (!accessMenu.contains(event.target) && !accessBtn.contains(event.target)) {
+            accessMenu.classList.remove('show');
         }
-        
-        // תפריט נגישות
-        const accessibilityWidget = document.querySelector('.accessibility-widget');
-        const accessibilityMenu = document.getElementById('accessibility-menu');
-        
-        // פונקציונליות פתיחה וסגירה של תפריט
-        if (accessibilityWidget && accessibilityMenu) {
-            accessibilityWidget.addEventListener('click', function() {
-                const isExpanded = accessibilityMenu.classList.contains('show');
-                accessibilityMenu.classList.toggle('show');
-                accessibilityWidget.setAttribute('aria-expanded', !isExpanded);
-                
-                // אם התפריט נפתח, התמקד בכותרת שלו
-                if (!isExpanded) {
-                    const title = document.getElementById('accessibility-dialog-title');
-                    if (title) {
-                        title.focus();
-                    }
-                }
-            });
-            
-            // סגירת התפריט בלחיצה מחוץ לו
-            document.addEventListener('click', function(event) {
-                if (!accessibilityMenu.contains(event.target) && 
-                    !accessibilityWidget.contains(event.target) &&
-                    accessibilityMenu.classList.contains('show')) {
-                    accessibilityMenu.classList.remove('show');
-                    accessibilityWidget.setAttribute('aria-expanded', 'false');
-                    accessibilityWidget.focus(); // החזרת הפוקוס לכפתור
-                }
-            });
-            
-            // טיפול במקש Escape לסגירת התפריט
-            document.addEventListener('keydown', function(event) {
-                if (event.key === 'Escape' && accessibilityMenu.classList.contains('show')) {
-                    accessibilityMenu.classList.remove('show');
-                    accessibilityWidget.setAttribute('aria-expanded', 'false');
-                    accessibilityWidget.focus(); // החזרת הפוקוס לכפתור
-                }
-            });
-        }
-        
-        // פונקציונאליות אפשרויות הנגישות
-        const fontLarge = document.getElementById('font-large');
-        const highContrast = document.getElementById('high-contrast');
-        const grayscale = document.getElementById('grayscale');
-        const linksUnderline = document.getElementById('links-underline');
-        const resetButton = document.getElementById('reset-accessibility');
-        
-        // הגדלת גופן
-        if (fontLarge) {
-            fontLarge.addEventListener('change', function() {
-                document.body.classList.toggle('large-font', this.checked);
-                try {
-                    localStorage.setItem('accessibility_large-font', this.checked);
-                } catch (e) {
-                    console.log('localStorage is not available');
-                }
-            });
-        }
-        
-        // ניגודיות גבוהה
-        if (highContrast) {
-            highContrast.addEventListener('change', function() {
-                document.body.classList.toggle('high-contrast', this.checked);
-                try {
-                    localStorage.setItem('accessibility_high-contrast', this.checked);
-                } catch (e) {
-                    console.log('localStorage is not available');
-                }
-            });
-        }
-        
-        // גווני אפור
-        if (grayscale) {
-            grayscale.addEventListener('change', function() {
-                document.body.classList.toggle('grayscale', this.checked);
-                try {
-                    localStorage.setItem('accessibility_grayscale', this.checked);
-                } catch (e) {
-                    console.log('localStorage is not available');
-                }
-            });
-        }
-        
-        // הדגשת קישורים
-        if (linksUnderline) {
-            linksUnderline.addEventListener('change', function() {
-                document.body.classList.toggle('links-underline', this.checked);
-                try {
-                    localStorage.setItem('accessibility_links-underline', this.checked);
-                } catch (e) {
-                    console.log('localStorage is not available');
-                }
-            });
-        }
-        
-        // איפוס הגדרות
-        if (resetButton) {
-            resetButton.addEventListener('click', function() {
-                // איפוס תצוגת האתר
-                document.body.classList.remove('large-font', 'high-contrast', 'grayscale', 'links-underline');
-                
-                // איפוס checkboxes
-                if (fontLarge) fontLarge.checked = false;
-                if (highContrast) highContrast.checked = false;
-                if (grayscale) grayscale.checked = false;
-                if (linksUnderline) linksUnderline.checked = false;
-                
-                // מחיקת כל ההגדרות מהאחסון המקומי
-                try {
-                    localStorage.removeItem('accessibility_large-font');
-                    localStorage.removeItem('accessibility_high-contrast');
-                    localStorage.removeItem('accessibility_grayscale');
-                    localStorage.removeItem('accessibility_links-underline');
-                } catch (e) {
-                    console.log('localStorage is not available');
-                }
-                
-                // הודעה למשתמש
-                alert('הגדרות הנגישות אופסו בהצלחה');
-            });
-        }
-        
-        // טעינת הגדרות מהאחסון המקומי
+    });
+    
+    document.getElementById('access-larger-text').addEventListener('change', function() {
+        document.body.classList.toggle('large-font', this.checked);
         try {
-            if (fontLarge) {
-                const largeFontSetting = localStorage.getItem('accessibility_large-font') === 'true';
-                fontLarge.checked = largeFontSetting;
-                document.body.classList.toggle('large-font', largeFontSetting);
-            }
-            
-            if (highContrast) {
-                const highContrastSetting = localStorage.getItem('accessibility_high-contrast') === 'true';
-                highContrast.checked = highContrastSetting;
-                document.body.classList.toggle('high-contrast', highContrastSetting);
-            }
-            
-            if (grayscale) {
-                const grayscaleSetting = localStorage.getItem('accessibility_grayscale') === 'true';
-                grayscale.checked = grayscaleSetting;
-                document.body.classList.toggle('grayscale', grayscaleSetting);
-            }
-            
-            if (linksUnderline) {
-                const linksUnderlineSetting = localStorage.getItem('accessibility_links-underline') === 'true';
-                linksUnderline.checked = linksUnderlineSetting;
-                document.body.classList.toggle('links-underline', linksUnderlineSetting);
-            }
+            localStorage.setItem('accessibility_large-font', this.checked);
         } catch (e) {
-            console.log('localStorage is not available');
-        }
-        
-        // שיפור נגישות לשאלות נפוצות (FAQ)
-        const faqQuestions = document.querySelectorAll('.faq-question');
-        faqQuestions.forEach((question, index) => {
-            const answer = question.nextElementSibling;
-            const id = 'faq-answer-' + (index + 1);
-            
-            // הוספת ARIA attributes
-            if (answer) {
-                answer.id = id;
-                question.setAttribute('aria-expanded', 'false');
-                question.setAttribute('aria-controls', id);
-                question.setAttribute('role', 'button');
-                question.setAttribute('tabindex', '0');
-                
-                // טיפול באירועי מקש
-                question.addEventListener('keydown', function(event) {
-                    if (event.key === 'Enter' || event.key === ' ') {
-                        event.preventDefault();
-                        question.click();
-                    }
-                });
-            }
-            <script>
-    document.addEventListener('DOMContentLoaded', function() {
-        // תפריט נגישות פשוט
-        const accessibilityWidget = document.getElementById('accessibility-simple-widget');
-        const accessibilityMenu = document.getElementById('accessibility-simple-menu');
-        
-        if (accessibilityWidget && accessibilityMenu) {
-            // אירוע לחיצה על כפתור הנגישות
-            accessibilityWidget.addEventListener('click', function() {
-                accessibilityMenu.classList.toggle('show');
-            });
-            
-            // סגירת התפריט בלחיצה מחוץ לתפריט
-            document.addEventListener('click', function(event) {
-                if (!accessibilityMenu.contains(event.target) && 
-                    !accessibilityWidget.contains(event.target) &&
-                    accessibilityMenu.classList.contains('show')) {
-                    accessibilityMenu.classList.remove('show');
-                }
-            });
-            
-            // הגדלת גופן
-            const fontLarge = document.getElementById('simple-font-large');
-            if (fontLarge) {
-                fontLarge.addEventListener('change', function() {
-                    document.body.classList.toggle('large-font', this.checked);
-                });
-            }
-            
-            // ניגודיות גבוהה
-            const highContrast = document.getElementById('simple-high-contrast');
-            if (highContrast) {
-                highContrast.addEventListener('change', function() {
-                    document.body.classList.toggle('high-contrast', this.checked);
-                });
-            }
-            
-            // הדגשת קישורים
-            const linksUnderline = document.getElementById('simple-links-underline');
-            if (linksUnderline) {
-                linksUnderline.addEventListener('change', function() {
-                    document.body.classList.toggle('links-underline', this.checked);
-                });
-            }
-            
-            // איפוס הגדרות
-            const resetButton = document.getElementById('simple-reset-accessibility');
-            if (resetButton) {
-                resetButton.addEventListener('click', function() {
-                    // איפוס תצוגת האתר
-                    document.body.classList.remove('large-font', 'high-contrast', 'links-underline');
-                    
-                    // איפוס checkboxes
-                    if (fontLarge) fontLarge.checked = false;
-                    if (highContrast) highContrast.checked = false;
-                    if (linksUnderline) linksUnderline.checked = false;
-                    
-                    alert('הגדרות הנגישות אופסו בהצלחה');
-                });
-            }
+            console.log('localStorage not available');
         }
     });
-</script>
-        });
+    
+    document.getElementById('access-high-contrast').addEventListener('change', function() {
+        document.body.classList.toggle('high-contrast', this.checked);
+        try {
+            localStorage.setItem('accessibility_high-contrast', this.checked);
+        } catch (e) {
+            console.log('localStorage not available');
+        }
     });
-</script>
-// accessibility.js
-document.addEventListener('DOMContentLoaded', function() {
-  // יצירת כפתור הנגישות והוספתו לדף
-  const accessBtn = document.createElement('button');
-  accessBtn.innerHTML = 'נג';
-  accessBtn.setAttribute('aria-label', 'אפשרויות נגישות');
-  accessBtn.style.position = 'fixed';
-  accessBtn.style.bottom = '20px';
-  accessBtn.style.left = '20px';
-  accessBtn.style.width = '50px';
-  accessBtn.style.height = '50px';
-  accessBtn.style.backgroundColor = '#0c4a6e';
-  accessBtn.style.color = 'white';
-  accessBtn.style.border = 'none';
-  accessBtn.style.borderRadius = '50%';
-  accessBtn.style.fontSize = '16px';
-  accessBtn.style.fontWeight = 'bold';
-  accessBtn.style.cursor = 'pointer';
-  accessBtn.style.zIndex = '9999';
-  accessBtn.style.boxShadow = '0 4px 10px rgba(0, 0, 0, 0.2)';
-  
-  // הוספת כפתור לעמוד
-  document.body.appendChild(accessBtn);
-  
-  // מטפל באירוע לחיצה
-  accessBtn.addEventListener('click', toggleAccessibilityMenu);
-  
-  // יצירת תפריט הנגישות
-  const accessMenu = document.createElement('div');
-  accessMenu.innerHTML = `
-    <h3 style="margin-top: 0; margin-bottom: 10px; font-weight: bold; color: #0c4a6e;">הגדרות נגישות</h3>
-    <div style="margin-bottom: 8px;">
-      <input type="checkbox" id="access-larger-text" style="margin-left: 5px;">
-      <label for="access-larger-text">הגדלת טקסט</label>
-    </div>
-    <div style="margin-bottom: 8px;">
-      <input type="checkbox" id="access-high-contrast" style="margin-left: 5px;">
-      <label for="access-high-contrast">ניגודיות גבוהה</label>
-    </div>
-    <button id="access-reset" style="width: 100%; background-color: #0c4a6e; color: white; border: none; padding: 8px; border-radius: 4px; cursor: pointer;">
-      איפוס הגדרות
-    </button>
-  `;
-  accessMenu.style.position = 'fixed';
-  accessMenu.style.bottom = '80px';
-  accessMenu.style.left = '20px';
-  accessMenu.style.width = '200px';
-  accessMenu.style.backgroundColor = 'white';
-  accessMenu.style.color = '#333';
-  accessMenu.style.padding = '15px';
-  accessMenu.style.borderRadius = '8px';
-  accessMenu.style.boxShadow = '0 4px 15px rgba(0, 0, 0, 0.2)';
-  accessMenu.style.zIndex = '9999';
-  accessMenu.style.display = 'none';
-  accessMenu.style.border = '2px solid #0c4a6e';
-  accessMenu.id = 'accessibility-menu';
-  
-  // הוספת תפריט לעמוד
-  document.body.appendChild(accessMenu);
-  
-  // מטפל בפונקציונליות התפריט
-  document.getElementById('access-larger-text').addEventListener('change', function() {
-    if (this.checked) {
-      document.body.style.fontSize = '120%';
-    } else {
-      document.body.style.fontSize = '';
-    }
-  });
-  
-  document.getElementById('access-high-contrast').addEventListener('change', function() {
-    if (this.checked) {
-      document.body.style.backgroundColor = 'black';
-      document.body.style.color = 'white';
-      const links = document.querySelectorAll('a, h1, h2, h3');
-      links.forEach(link => {
-        link.style.color = 'yellow';
-      });
-    } else {
-      document.body.style.backgroundColor = '';
-      document.body.style.color = '';
-      const links = document.querySelectorAll('a, h1, h2, h3');
-      links.forEach(link => {
-        link.style.color = '';
-      });
-    }
-  });
-  
-  document.getElementById('access-reset').addEventListener('click', function() {
-    document.getElementById('access-larger-text').checked = false;
-    document.getElementById('access-high-contrast').checked = false;
-    document.body.style.fontSize = '';
-    document.body.style.backgroundColor = '';
-    document.body.style.color = '';
-    const links = document.querySelectorAll('a, h1, h2, h3');
-    links.forEach(link => {
-      link.style.color = '';
+    
+    document.getElementById('access-reset').addEventListener('click', function() {
+        document.getElementById('access-larger-text').checked = false;
+        document.getElementById('access-high-contrast').checked = false;
+        document.body.classList.remove('large-font', 'high-contrast');
+        try {
+            localStorage.clear();
+        } catch (e) {
+            console.log('localStorage not available');
+        }
+        alert('ההגדרות אופסו בהצלחה');
     });
-    alert('ההגדרות אופסו בהצלחה');
-  });
-  
-  // סגירת התפריט בלחיצה מחוץ לאזור
-  document.addEventListener('click', function(event) {
-    const menu = document.getElementById('accessibility-menu');
-    if (event.target !== accessBtn && !menu.contains(event.target) && menu.style.display === 'block') {
-      menu.style.display = 'none';
+    
+    // טעינת הגדרות שמורות
+    try {
+        const largeFontSetting = localStorage.getItem('accessibility_large-font') === 'true';
+        const highContrastSetting = localStorage.getItem('accessibility_high-contrast') === 'true';
+        
+        if (largeFontSetting) {
+            document.getElementById('access-larger-text').checked = true;
+            document.body.classList.add('large-font');
+        }
+        if (highContrastSetting) {
+            document.getElementById('access-high-contrast').checked = true;
+            document.body.classList.add('high-contrast');
+        }
+    } catch (e) {
+        console.log('localStorage not available');
     }
-  });
-  
-  function toggleAccessibilityMenu() {
-    const menu = document.getElementById('accessibility-menu');
-    if (menu.style.display === 'block') {
-      menu.style.display = 'none';
-    } else {
-      menu.style.display = 'block';
-    }
-  }
-});
-// הוסף קוד זה ל-accessibility.js שלך
-document.addEventListener('DOMContentLoaded', function() {
-    // מוסיף סגנון גלובלי שאמור לבטל את הקו
-    var style = document.createElement('style');
+}
+
+// תיקון הקו התחתון בכותרת
+function fixHeroUnderline() {
+    // הוספת סגנון גלובלי
+    const style = document.createElement('style');
     style.textContent = `
-        /* טיפול בקו תחתון בכותרת הראשית */
+        /* הסרת קו תחתון בכותרת */
         .hero-gradient h1::after,
         .hero-gradient h2::after,
+        .hero-gradient h1::before,
+        .hero-gradient h2::before,
         #home h1::after,
         #home h2::after,
         section[class*="hero"] h1::after,
         section[class*="hero"] h2::after,
-        section[id="home"] h1::after,
-        section[id="home"] h2::after,
-        /* כיסוי יותר מקיף */
-        section[class*="hero"] *::after,
-        section[id="home"] *::after,
-        /* כיסוי ספציפי למילה 'מימון' */
-        *:contains("מימון")::after {
+        .hero-title::after,
+        .hero-title::before,
+        .hero-divider {
             display: none !important;
             content: none !important;
             border: none !important;
@@ -728,146 +252,14 @@ document.addEventListener('DOMContentLoaded', function() {
     `;
     document.head.appendChild(style);
     
-    // פתרון חלופי: הוסף שכבת כיסוי מעל הקו
-    setTimeout(function() {
-        var heroSection = document.querySelector('.hero-gradient, [id="home"], section[class*="hero"]');
-        if (heroSection) {
-            var headings = heroSection.querySelectorAll('h1, h2');
-            headings.forEach(function(heading) {
-                if (heading.textContent.includes('מימון') || heading.textContent.includes('קבוצת חן')) {
-                    // בדוק אם יש כבר שכבת כיסוי
-                    if (!heading.querySelector('.line-cover')) {
-                        // יצירת שכבת כיסוי לקו
-                        heading.style.position = 'relative';
-                        var cover = document.createElement('div');
-                        cover.className = 'line-cover';
-                        cover.style.position = 'absolute';
-                        cover.style.bottom = '0';
-                        cover.style.left = '0';
-                        cover.style.right = '0';
-                        cover.style.height = '3px'; // גובה משוער של הקו
-                        cover.style.backgroundColor = getComputedStyle(heroSection).backgroundColor; // צבע הרקע של הסקשן
-                        cover.style.zIndex = '10';
-                        heading.appendChild(cover);
-                    }
-                }
-            });
-            
-            // בדיקה נוספת: האם קיים אלמנט ספציפי שהוא הקו?
-            var possibleLines = heroSection.querySelectorAll('.hero-divider, .divider, hr, [class*="line"], [class*="underline"]');
-            possibleLines.forEach(function(line) {
-                line.style.display = 'none';
-            });
-        }
-    }, 500); // המתנה קצרה לוודא שהדף נטען במלואו
-});
-// קוד להכנסה לקובץ HTML או JavaScript
-document.addEventListener('DOMContentLoaded', function() {
-    // פונקציה שמתבצעת באופן מיידי
-    (function coverLine() {
-        // יצירת אלמנט כיסוי
-        var cover = document.createElement('div');
-        cover.style.position = 'absolute';
-        cover.style.width = '80px';  // רוחב הקו המשוער
-        cover.style.height = '3px';   // גובה הקו המשוער
-        cover.style.backgroundColor = '#186099'; // צבע כחול זהה לרקע
-        cover.style.left = '50%';
-        cover.style.marginLeft = '-40px'; // מחצית מהרוחב, למרכוז
-        cover.style.bottom = '330px';  // מיקום משוער
-        cover.style.zIndex = '9999';   // שכבה עליונה
-        
-        // הוספת האלמנט לעמוד
-        document.body.appendChild(cover);
-        
-        // ניסיון שני עם מיקום שונה (למקרה שהראשון לא מדויק)
-        var cover2 = document.createElement('div');
-        cover2.style.position = 'absolute';
-        cover2.style.width = '100px';
-        cover2.style.height = '3px';
-        cover2.style.backgroundColor = '#186099';
-        cover2.style.left = '50%';
-        cover2.style.marginLeft = '-50px';
-        cover2.style.bottom = '350px';
-        cover2.style.zIndex = '9999';
-        document.body.appendChild(cover2);
-        
-        // ניסיון שלישי עם מיקום נוסף
-        var cover3 = document.createElement('div');
-        cover3.style.position = 'absolute';
-        cover3.style.width = '120px';
-        cover3.style.height = '3px';
-        cover3.style.backgroundColor = '#186099';
-        cover3.style.left = '50%';
-        cover3.style.marginLeft = '-60px';
-        cover3.style.bottom = '370px';
-        cover3.style.zIndex = '9999';
-        document.body.appendChild(cover3);
-    })();
-});
-// קוד להכנסה ישירות לקונסולת הדפדפן לבדיקה מהירה
-// רץ על כל האלמנטים באתר ומחפש את אלה שמייצרים קו בתחתית
-var allElements = document.querySelectorAll('*');
-allElements.forEach(function(el) {
-    var style = window.getComputedStyle(el);
-    // בודק אם יש קו תחתון
-    if (style.borderBottom && style.borderBottom !== 'none' && style.borderBottom.includes('px')) {
-        console.log('Found element with border-bottom:', el);
-        el.style.borderBottom = 'none';
-    }
-    // בודק גם ::after פסאודו אלמנטים
-    var afterStyle = window.getComputedStyle(el, '::after');
-    if (afterStyle.content && afterStyle.content !== 'none') {
-        console.log('Found element with ::after content:', el);
-        // יוצר סגנון שמסתיר את ה-::after
-        var styleEl = document.createElement('style');
-        styleEl.textContent = `
-            #${el.id}.${el.className.split(' ').join('.')}::after {
-                display: none !important;
-                content: none !important;
-            }
-        `;
-        document.head.appendChild(styleEl);
-    }
-});
-document.addEventListener('DOMContentLoaded', function() {
-    // מצא את הסקשן או האלמנט שמכיל את הכותרת עם הקו
-    var heroSection = document.querySelector('.hero-gradient, [id="home"], section[class*="hero"]');
-    
+    // חיפוש הקו הספציפי והסתרתו
+    const heroSection = document.querySelector('.hero-gradient, [id="home"], section[class*="hero"]');
     if (heroSection) {
-        // חפש את הכותרת הראשית
-        var headings = heroSection.querySelectorAll('h1, h2');
-        
-        headings.forEach(function(heading) {
-            if (heading.textContent.includes('מימון') || heading.textContent.includes('קבוצת חן')) {
-                // שפר את הקו כך שיראה אסתטי יותר
-                var styleEl = document.createElement('style');
-                styleEl.textContent = `
-                    /* עיצוב לקו שיהיה יפה ומכוון */
-                    ${heading.tagName.toLowerCase()}${heading.id ? '#'+heading.id : ''}${heading.className ? '.'+heading.className.split(' ').join('.') : ''}::after {
-                        content: "" !important;
-                        display: block !important;
-                        width: 80px !important; /* רוחב קצר יותר */
-                        height: 3px !important; /* עובי מוגדר */
-                        background-color: white !important; /* צבע לבן ברור */
-                        margin: 10px auto 20px !important; /* מרווח אוויר יפה מסביב */
-                        border-radius: 2px !important; /* קצוות מעוגלים קלות */
-                        opacity: 0.8 !important; /* שקיפות קלה לעידון */
-                    }
-                `;
-                document.head.appendChild(styleEl);
-                
-                // אם זה לא הפסאודו-אלמנט, יתכן שזה אלמנט נפרד
-                var dividers = heroSection.querySelectorAll('.hero-divider, .divider, hr, [class*="line"], [class*="underline"]');
-                dividers.forEach(function(divider) {
-                    divider.style.width = '80px';
-                    divider.style.height = '3px';
-                    divider.style.backgroundColor = 'white';
-                    divider.style.margin = '10px auto 20px';
-                    divider.style.borderRadius = '2px';
-                    divider.style.opacity = '0.8';
-                    divider.style.display = 'block';
-                });
+        const possibleLines = heroSection.querySelectorAll('.hero-divider, hr, [class*="line"], [class*="underline"]');
+        possibleLines.forEach(line => {
+            if (line.offsetHeight <= 5) { // קווים דקים בלבד
+                line.style.display = 'none';
             }
         });
     }
-});
+}
