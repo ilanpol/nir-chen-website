@@ -229,7 +229,122 @@
             </div>
         </div>
     </div>
+<!-- Navigation -->
+    <nav class="bg-white shadow-md sticky top-0 z-50">
+        <div class="container mx-auto px-2 sm:px-4 py-3 flex justify-between items-center nav-container">
+            <div class="flex items-center flex-shrink-0 logo-container">
+                <!-- לוגו סולידי במקום תמונה -->
+                <div class="h-12 w-12 bg-blue-900 rounded-lg flex items-center justify-center text-white font-bold text-xl mr-2 sm:mr-3 flex-shrink-0">
+                    ק"ח
+                </div>
+                <div>
+                    <h1 class="text-lg sm:text-xl font-bold text-blue-900 whitespace-nowrap">קבוצת חן למימון</h1>
+                    <p class="text-xs text-gray-600">ניכיון שיקים מקצועי</p>
+                </div>
+            </div>
+            <div class="hidden md:flex space-x-8 space-x-reverse">
+                <a class="text-blue-900 font-medium hover:text-blue-700 transition-all" href="#home">בית</a>
+                <a class="text-gray-700 hover:text-blue-700 transition-all" href="#services">שירותים</a>
+                <a class="text-gray-700 hover:text-blue-700 transition-all" href="#calculator">מחשבון</a>
+                <a class="text-gray-700 hover:text-blue-700 transition-all" href="#about">אודות</a>
+                <a class="text-gray-700 hover:text-blue-700 transition-all" href="#location">מיקום</a>
+                <a class="text-gray-700 hover:text-blue-700 transition-all" href="#contact">יצירת קשר</a>
+                <a class="text-gray-700 hover:text-blue-700 transition-all" href="#faq">שאלות נפוצות</a>
+            </div>
+            <button class="md:hidden text-gray-700 focus:outline-none" id="mobile-menu-button">
+                <i class="fas fa-bars text-2xl"></i>
+            </button>
+        </div>
+        <!-- Mobile Menu -->
+        <div class="mobile-menu bg-white shadow-md absolute w-full md:hidden" id="mobile-menu">
+            <div class="container mx-auto px-4 py-3 flex flex-col space-y-4">
+                <a class="text-blue-900 font-medium py-2 border-b border-gray-100" href="#home">בית</a>
+                <a class="text-gray-700 hover:text-blue-700 py-2 border-b border-gray-100" href="#services">שירותים</a>
+                <a class="text-gray-700 hover:text-blue-700 py-2 border-b border-gray-100" href="#calculator">מחשבון</a>
+                <a class="text-gray-700 hover:text-blue-700 py-2 border-b border-gray-100" href="#about">אודות</a>
+                <a class="text-gray-700 hover:text-blue-700 py-2 border-b border-gray-100" href="#location">מיקום</a>
+                <a class="text-gray-700 hover:text-blue-700 py-2 border-b border-gray-100" href="#contact">יצירת קשר</a>
+                <a class="text-gray-700 hover:text-blue-700 py-2" href="#faq">שאלות נפוצות</a>
+            </div>
+        </div>
+    </nav>
 
+    <!-- רכיב אזהרה לאתר - מידע לגבי שליחת שיקים -->
+    <div class="bg-gray-100 py-4 border-y border-gray-200 mb-6">
+        <div class="container mx-auto px-4 text-center">
+            <p class="font-medium text-gray-700 mb-2">לקבלת שירות מיידי, ניתן לשלוח צילום של השיק דרך ה-וואצאפ או להתקשר לטלפון 050-5635020</p>
+            
+            <div class="bg-blue-900 text-white py-6 px-4 rounded-md mt-3">
+                <h3 class="text-xl font-bold mb-4">נא לא לשלוח את סוגי השיקים הבאים:</h3>
+                
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-right">
+                    <div class="flex items-center justify-end">
+                        <span>שיקים "למוטב בלבד" (גם אם הצ'ק פתוח)</span>
+                        <span class="inline-block bg-red-500 text-white rounded-full p-1 mx-2">✕</span>
+                    </div>
+                    
+                    <div class="flex items-center justify-end">
+                        <span>שיקים של אנשים פרטיים שאינם בעלי עסקים</span>
+                        <span class="inline-block bg-red-500 text-white rounded-full p-1 mx-2">✕</span>
+                    </div>
+                    
+                    <div class="flex items-center justify-end">
+                        <span>צ'קים מזומנים</span>
+                        <span class="inline-block bg-red-500 text-white rounded-full p-1 mx-2">✕</span>
+                    </div>
+                </div>
+            </div>
+            
+            <p class="mt-4 text-sm text-gray-600">*יש לפנות למנהל במערכת הסליקה אם בטעות נשלח שיק מסוג זה, או להודיע על כך למוקד הטלפוני</p>
+        </div>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero-gradient text-white py-20 relative" id="home">
+        <!-- תמונת רקע מעומעמת -->
+        <div class="absolute inset-0 z-0 opacity-20">
+            <img alt="אתר בניה ברקע" class="object-cover w-full h-full" src="construction-site.jpg"/>
+        </div>
+        <div class="container mx-auto px-4 flex flex-col md:flex-row items-center relative z-10">
+            <div class="md:w-1/2 mb-10 md:mb-0 animate__animated animate__fadeInRight">
+                <div class="text-center mb-12 animate__animated animate__fadeInRight" style="margin-right: 10%; text-align: right;">
+                    <span class="inline-block bg-blue-800 text-white text-sm font-semibold py-1 px-3 rounded-full mb-4">המובילים בתחום ניכיון השיקים</span>
+                    <!-- שם החברה בגדול ובולט -->
+                    <h1 class="text-3xl md:text-4xl lg:text-5xl font-bold mb-2 text-white hero-company-name hero-title-shadow">
+                        קבוצת חן למימון
+                    </h1>
+                    <div class="hero-divider"></div>
+                    <h2 class="text-3xl md:text-4xl font-bold mb-6">ניכיון שיקים מהיר ואמין</h2>
+                    <p class="text-xl mb-8">הפתרון המהיר והמקצועי ביותר לניכיון שיקים לעסקים ולעצמאיים בישראל</p>
+                    <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4 sm:space-x-reverse">
+                        <!-- כפתור עם שליחת מייל -->
+                        <a class="bg-white text-blue-900 font-bold py-3 px-6 rounded-lg text-center hover:bg-gray-100 transition-all pulse-animation" href="mailto:nirchen2010@gmail.com?subject=בקשת%20הצעת%20מחיר%20לניכיון%20שיקים&amp;body=שלום,%0A%0Aאשמח%20לקבל%20הצעת%20מחיר%20לניכיון%20שיקים.%0A%0Aפרטי%20השיק:%0A-%20סכום:%20%0A-%20תאריך%20פירעון:%20%0A%0Aפרטי%20התקשרות:%0A-%20שם:%20%0A-%20טלפון:%20%0A%0Aבברכה,">קבל הצעת מחיר</a>
+                        <a class="border-2 border-white text-white font-bold py-3 px-6 rounded-lg text-center hover:bg-white hover:text-blue-900 transition-all" href="tel:0505635020">
+                            <i class="fas fa-phone-alt ml-2"></i>התקשר עכשיו
+                        </a>
+                    </div>
+                    <div class="mt-8 flex items-center space-x-6 space-x-reverse">
+                        <div class="text-sm">
+                            <div class="flex items-center">
+                                <div class="text-yellow-400 mr-2">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </div>
+                                <span>4.9/5</span>
+                            </div>
+                            <p>מעל יותר מ-2000 לקוחות מרוצים</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="md:w-1/2 flex justify-center">
+                <!-- השארתי את הכותרת בחלק השמאלי במקום התמונה -->
+            </div>
+        </div>
+    </section>
 <h3 class="text-xl font-bold mb-3">שירות אישי</h3>
                     <p class="text-gray-600">כל לקוח מקבל יחס אישי ופתרון מותאם לצרכים הספציפיים שלו.</p>
                 </div>
