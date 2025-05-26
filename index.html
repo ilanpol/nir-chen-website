@@ -124,7 +124,46 @@
             transform: translateX(0);
         }
 
-        /* אייקונים מעוצבים */
+        /* שיפורים לנייד */
+        @media (max-width: 768px) {
+            .hero-title-shadow {
+                text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7);
+            }
+            
+            .text-glow {
+                text-shadow: 0 0 15px rgba(255, 255, 255, 0.8);
+            }
+            
+            .gradient-bg {
+                background: linear-gradient(135deg, #0c4a6e 0%, #1e40af 70%, #075985 100%);
+            }
+            
+            .mobile-menu {
+                transform: translateX(100%);
+                transition: transform 0.3s ease-in-out;
+                background: rgba(255, 255, 255, 0.98);
+                backdrop-filter: blur(10px);
+            }
+
+            .mobile-menu.open {
+                transform: translateX(0);
+            }
+            
+            /* שיפור ניגודיות לכותרות בנייד */
+            .gradient-bg h1,
+            .gradient-bg h2,
+            .gradient-bg h3 {
+                text-shadow: 3px 3px 10px rgba(0, 0, 0, 0.8);
+                color: #ffffff !important;
+            }
+            
+            .glassmorphism {
+                background: rgba(255, 255, 255, 0.25);
+                backdrop-filter: blur(15px);
+                border: 2px solid rgba(255, 255, 255, 0.3);
+                text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.7);
+            }
+        }
         .custom-icon {
             background: linear-gradient(135deg, #3b82f6, #1d4ed8);
             color: white;
@@ -302,18 +341,34 @@
         </div>
         
         <!-- תפריט נייד -->
-        <div class="mobile-menu fixed top-0 right-0 h-full w-64 bg-white shadow-xl z-50 md:hidden" id="mobile-menu">
-            <div class="p-4">
-                <button class="text-gray-700 float-left mb-4" id="close-mobile-menu">
-                    <i class="fas fa-times text-2xl"></i>
-                </button>
-                <div class="clear-both space-y-4">
-                    <a class="block text-blue-900 font-medium py-2 border-b border-gray-100" href="#home">בית</a>
-                    <a class="block text-gray-700 hover:text-blue-700 py-2 border-b border-gray-100" href="#services">שירותים</a>
-                    <a class="block text-gray-700 hover:text-blue-700 py-2 border-b border-gray-100" href="#check-guide">מדריך שיקים</a>
-                    <a class="block text-gray-700 hover:text-blue-700 py-2 border-b border-gray-100" href="#legal">מידע חוקי</a>
-                    <a class="block text-gray-700 hover:text-blue-700 py-2 border-b border-gray-100" href="#calculator">מחשבון</a>
-                    <a class="block text-gray-700 hover:text-blue-700 py-2" href="#contact">יצירת קשר</a>
+        <div class="mobile-menu fixed top-0 right-0 h-full w-80 bg-white shadow-2xl z-50 md:hidden" id="mobile-menu" style="background: rgba(255, 255, 255, 0.98); backdrop-filter: blur(15px);">
+            <div class="p-6">
+                <div class="flex justify-between items-center mb-6">
+                    <h3 class="text-xl font-bold text-blue-900">תפריט ניווט</h3>
+                    <button class="text-gray-700 hover:text-red-600 transition-colors" id="close-mobile-menu">
+                        <i class="fas fa-times text-2xl"></i>
+                    </button>
+                </div>
+                <div class="space-y-1">
+                    <a class="block text-blue-900 font-bold py-3 px-4 rounded-lg hover:bg-blue-50 transition-colors" href="#home">🏠 בית</a>
+                    <a class="block text-gray-800 font-medium py-3 px-4 rounded-lg hover:bg-blue-50 transition-colors" href="#services">💼 שירותים</a>
+                    <a class="block text-gray-800 font-medium py-3 px-4 rounded-lg hover:bg-blue-50 transition-colors" href="#check-guide">📋 מדריך שיקים</a>
+                    <a class="block text-gray-800 font-medium py-3 px-4 rounded-lg hover:bg-blue-50 transition-colors" href="#legal">⚖️ מידע חוקי</a>
+                    <a class="block text-gray-800 font-medium py-3 px-4 rounded-lg hover:bg-blue-50 transition-colors" href="#calculator">🧮 מחשבון</a>
+                    <a class="block text-gray-800 font-medium py-3 px-4 rounded-lg hover:bg-blue-50 transition-colors" href="#contact">📞 יצירת קשר</a>
+                </div>
+                
+                <!-- קישורי התקשרות במובייל -->
+                <div class="mt-8 p-4 bg-blue-50 rounded-lg">
+                    <h4 class="font-bold text-blue-900 mb-3">צור קשר מהיר:</h4>
+                    <div class="space-y-2">
+                        <a class="flex items-center text-blue-800 font-medium py-2" href="tel:0505635020">
+                            <i class="fas fa-phone mr-3"></i> 050-5635020
+                        </a>
+                        <a class="flex items-center text-green-600 font-medium py-2" href="https://api.whatsapp.com/send?phone=972505635020" target="_blank">
+                            <i class="fab fa-whatsapp mr-3"></i> שלח וואטסאפ
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
@@ -324,22 +379,22 @@
         <div class="container mx-auto px-4 flex flex-col md:flex-row items-center relative z-10">
             <div class="md:w-1/2 mb-10 md:mb-0">
                 <div class="text-right">
-                    <div class="glassmorphism inline-block text-sm font-semibold py-2 px-4 rounded-full mb-6">
-                        <i class="fas fa-star text-yellow-400 mr-2"></i>
+                    <div class="glassmorphism inline-block text-sm font-semibold py-2 px-4 rounded-full mb-6" style="background: rgba(255, 255, 255, 0.3); backdrop-filter: blur(15px); border: 2px solid rgba(255, 255, 255, 0.4); color: #ffffff; text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.8);">
+                        <i class="fas fa-star text-yellow-300 mr-2"></i>
                         המובילים בתחום ניכיון שיקים מסחריים
                     </div>
                     
-                    <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold mb-4 text-glow">
+                    <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold mb-4 text-glow" style="color: #ffffff; text-shadow: 3px 3px 12px rgba(0, 0, 0, 0.9);">
                         קבוצת חן למימון
                     </h1>
                     
                     <div class="h-1 w-24 bg-gradient-to-r from-yellow-400 to-orange-500 mb-6 mr-auto"></div>
                     
-                    <h2 class="text-2xl md:text-3xl font-bold mb-6 typing-animation">
+                    <h2 class="text-2xl md:text-3xl font-bold mb-6 typing-animation" style="color: #ffffff; text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.8);">
                         ניכיון שיקים מסחריים מהיר ואמין
                     </h2>
                     
-                    <p class="text-xl mb-8 opacity-90">
+                    <p class="text-xl mb-8 opacity-90" style="color: #ffffff; text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.7);">
                         הפתרון המהיר והמקצועי ביותר לניכיון שיקים מסחריים לעסקים ולעצמאיים בישראל
                     </p>
                     
