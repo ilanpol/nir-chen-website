@@ -186,6 +186,91 @@
             justify-content: center;
             box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);
         }
+
+        /* סגנונות נגישות */
+        .accessibility-menu {
+            transition: all 0.3s ease;
+        }
+
+        .accessibility-menu.show {
+            display: block !important;
+        }
+
+        .toggle-switch {
+            appearance: none;
+            width: 44px;
+            height: 24px;
+            background-color: #ddd;
+            border-radius: 12px;
+            position: relative;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .toggle-switch:checked {
+            background-color: #3b82f6;
+        }
+
+        .toggle-switch::before {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background-color: white;
+            top: 2px;
+            left: 2px;
+            transition: transform 0.3s ease;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .toggle-switch:checked::before {
+            transform: translateX(20px);
+        }
+
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0,0,0,0);
+            white-space: nowrap;
+            border: 0;
+        }
+
+        /* אפקטי נגישות */
+        .large-font {
+            font-size: 120% !important;
+        }
+
+        .large-font h1, .large-font h2, .large-font h3, .large-font h4 {
+            font-size: 130% !important;
+        }
+
+        .high-contrast {
+            filter: contrast(150%) brightness(110%);
+        }
+
+        .high-contrast * {
+            background-color: black !important;
+            color: white !important;
+        }
+
+        .high-contrast a, .high-contrast button, .high-contrast h1, 
+        .high-contrast h2, .high-contrast h3, .high-contrast h4 {
+            color: yellow !important;
+        }
+
+        .grayscale {
+            filter: grayscale(100%);
+        }
+
+        .links-underline a {
+            text-decoration: underline !important;
+            text-decoration-thickness: 2px !important;
+        }
     </style>
 </head>
 
@@ -327,7 +412,7 @@
                                 <div class="text-sm opacity-90">לקוחות מרוצים</div>
                             </div>
                             <div class="text-center">
-                                <div class="text-3xl font-bold">12+</div>
+                                <div class="text-3xl font-bold">15+</div>
                                 <div class="text-sm opacity-90">שנות ניסיון</div>
                             </div>
                             <div class="text-center">
@@ -338,7 +423,7 @@
                                     <i class="fas fa-star"></i>
                                     <i class="fas fa-star"></i>
                                 </div>
-                                <div class="text-sm opacity-90">דירוג 5 כзвезд</div>
+                                <div class="text-sm opacity-90">דירוג 5 כוכבים</div>
                             </div>
                         </div>
                     </div>
@@ -402,23 +487,6 @@
                                         <li>✓ חותמת עסק</li>
                                         <li>✓ חתימה אישית</li>
                                         <li>✓ מספר עוסק מורשה</li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="check-valid p-6 rounded-lg bg-green-50">
-                            <div class="flex items-start">
-                                <div class="custom-icon mr-4" style="background: linear-gradient(135deg, #10b981, #059669);">
-                                    <i class="fas fa-handshake"></i>
-                                </div>
-                                <div>
-                                    <h4 class="font-bold text-lg mb-2">שיק משותפות</h4>
-                                    <ul class="text-sm text-gray-700 space-y-1">
-                                        <li>✓ שם השותפות המלא</li>
-                                        <li>✓ חותמת השותפות</li>
-                                        <li>✓ חתימת שותף מורשה</li>
-                                        <li>✓ רישום תקין במע"מ</li>
                                     </ul>
                                 </div>
                             </div>
@@ -517,15 +585,6 @@
                         <div>
                             <h4 class="font-bold mb-2">חתימה תקינה</h4>
                             <p class="text-gray-700">וודא שהחתימה ברורה ותואמת לחותמת</p>
-                        </div>
-                    </div>
-                    <div class="flex items-start">
-                        <div class="custom-icon mr-4">
-                            <i class="fas fa-shield-alt"></i>
-                        </div>
-                        <div>
-                            <h4 class="font-bold mb-2">שמור על מקור</h4>
-                            <p class="text-gray-700">שמור את השיק המקורי עד להשלמת התהליך</p>
                         </div>
                     </div>
                 </div>
@@ -731,13 +790,13 @@
                             <div class="text-sm opacity-90">פעילות מורשית</div>
                         </div>
                         <div class="text-center">
-                            <div class="text-4xl font-bold text-yellow-400 mb-2">אמינות</div>
-                            <div class="text-sm opacity-90">12 שנות מוניטין</div>
+                            <div class="text-4xl font-bold text-yellow-400 mb-2">15+</div>
+                            <div class="text-sm opacity-90">שנות מוניטין</div>
                         </div>
                     </div>
                     <p class="text-lg opacity-90 max-w-3xl mx-auto">
                         אנו מתחייבים לפעול בהתאם לכל החוקים הרלוונטיים, לשמור על שקיפות מלאה עם לקוחותינו ולספק שירות הוגן ומקצועי. 
-                        הרישיון שלנו ופעילותנו נבדקים באופן שוטף על ידי רשות שוק ההון.
+                        הרישיון שלנו ופעילותנו נבדקים באופן שוטף על ידי רשות שוק ההון. עם מעל 15 שנות ניסיון, אנו גאים במוניטין שלנו בשוק.
                     </p>
                 </div>
             </div>
@@ -1234,6 +1293,37 @@
         <i class="fab fa-whatsapp"></i>
     </a>
 
+    <!-- כפתור נגישות -->
+    <div class="fixed bottom-6 left-6 z-50">
+        <div aria-label="תפריט נגישות" class="w-14 h-14 bg-blue-900 hover:bg-blue-800 text-white rounded-full flex items-center justify-center cursor-pointer shadow-2xl transition-all duration-300 transform hover:scale-110" id="accessibility-toggle" role="button" tabindex="0">
+            <i class="fas fa-universal-access text-xl"></i>
+            <span class="sr-only">פתח תפريט נגישות</span>
+        </div>
+        
+        <!-- תפריט נגישות -->
+        <div class="accessibility-menu absolute bottom-16 left-0 w-64 bg-white rounded-xl shadow-2xl p-6 border border-gray-200 hidden" id="accessibility-menu">
+            <h3 class="text-lg font-bold text-blue-900 mb-4 text-center">הגדרות נגישות</h3>
+            <div class="space-y-4">
+                <div class="flex items-center justify-between">
+                    <label class="text-gray-700 font-medium" for="font-large">הגדלת גופן</label>
+                    <input class="toggle-switch" id="font-large" type="checkbox"/>
+                </div>
+                <div class="flex items-center justify-between">
+                    <label class="text-gray-700 font-medium" for="high-contrast">ניגודיות גבוהה</label>
+                    <input class="toggle-switch" id="high-contrast" type="checkbox"/>
+                </div>
+                <div class="flex items-center justify-between">
+                    <label class="text-gray-700 font-medium" for="grayscale">גווני אפור</label>
+                    <input class="toggle-switch" id="grayscale" type="checkbox"/>
+                </div>
+                <div class="flex items-center justify-between">
+                    <label class="text-gray-700 font-medium" for="links-underline">הדגשת קישורים</label>
+                    <input class="toggle-switch" id="links-underline" type="checkbox"/>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- JavaScript משופר -->
     <script>
         // מחשבון מתקדם
@@ -1340,7 +1430,72 @@
             });
         }
         
-        // טיפול בתפריט נייד
+        // טיפול בנגישות
+        function initAccessibility() {
+            const accessibilityToggle = document.getElementById('accessibility-toggle');
+            const accessibilityMenu = document.getElementById('accessibility-menu');
+            
+            // פתיחה/סגירה של תפריט הנגישות
+            accessibilityToggle?.addEventListener('click', () => {
+                accessibilityMenu.classList.toggle('show');
+            });
+            
+            // סגירה בלחיצה מחוץ לתפריט
+            document.addEventListener('click', (e) => {
+                if (!accessibilityToggle?.contains(e.target) && !accessibilityMenu?.contains(e.target)) {
+                    accessibilityMenu?.classList.remove('show');
+                }
+            });
+            
+            // פונקציות נגישות
+            const fontLarge = document.getElementById('font-large');
+            const highContrast = document.getElementById('high-contrast');
+            const grayscale = document.getElementById('grayscale');
+            const linksUnderline = document.getElementById('links-underline');
+            
+            // הגדלת גופן
+            fontLarge?.addEventListener('change', function() {
+                document.body.classList.toggle('large-font', this.checked);
+                localStorage.setItem('large-font', this.checked);
+            });
+            
+            // ניגודיות גבוהה
+            highContrast?.addEventListener('change', function() {
+                document.body.classList.toggle('high-contrast', this.checked);
+                localStorage.setItem('high-contrast', this.checked);
+            });
+            
+            // גווני אפור
+            grayscale?.addEventListener('change', function() {
+                document.body.classList.toggle('grayscale', this.checked);
+                localStorage.setItem('grayscale', this.checked);
+            });
+            
+            // הדגשת קישורים
+            linksUnderline?.addEventListener('change', function() {
+                document.body.classList.toggle('links-underline', this.checked);
+                localStorage.setItem('links-underline', this.checked);
+            });
+            
+            // טעינת הגדרות שמורות
+            loadAccessibilitySettings();
+        }
+        
+        // טעינת הגדרות נגישות שמורות
+        function loadAccessibilitySettings() {
+            const settings = ['large-font', 'high-contrast', 'grayscale', 'links-underline'];
+            
+            settings.forEach(setting => {
+                const saved = localStorage.getItem(setting) === 'true';
+                const checkbox = document.getElementById(setting);
+                const className = setting;
+                
+                if (saved && checkbox) {
+                    checkbox.checked = true;
+                    document.body.classList.add(className);
+                }
+            });
+        }
         function initMobileMenu() {
             const menuButton = document.getElementById('mobile-menu-button');
             const mobileMenu = document.getElementById('mobile-menu');
@@ -1365,6 +1520,7 @@
         // הפעלת כל הפונקציות
         document.addEventListener('DOMContentLoaded', function() {
             initMobileMenu();
+            initAccessibility();
             revealOnScroll();
             
             // מאזינים לאירועים
