@@ -321,6 +321,10 @@
                     בית
                     <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-blue-700 transition-all duration-300 group-hover:w-full"></span>
                 </a>
+                <a class="text-gray-700 hover:text-blue-700 transition-all relative group" href="#video">
+                    סרטון הסבר
+                    <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-blue-700 transition-all duration-300 group-hover:w-full"></span>
+                </a>
                 <a class="text-gray-700 hover:text-blue-700 transition-all relative group" href="#services">
                     שירותים
                     <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-blue-700 transition-all duration-300 group-hover:w-full"></span>
@@ -369,6 +373,10 @@
                     <a href="#home" style="display: flex; align-items: center; padding: 15px; background: #dbeafe; color: #1e40af !important; font-weight: bold; border-radius: 12px; text-decoration: none; border: 2px solid #93c5fd;">
                         <span style="font-size: 20px; margin-left: 12px;">🏠</span>
                         <span>בית</span>
+                    </a>
+                    <a href="#video" style="display: flex; align-items: center; padding: 15px; background: #ffffff; color: #374151 !important; font-weight: 600; border-radius: 12px; text-decoration: none; border: 1px solid #e5e7eb;">
+                        <span style="font-size: 20px; margin-left: 12px;">🎬</span>
+                        <span>סרטון הסבר</span>
                     </a>
                     <a href="#services" style="display: flex; align-items: center; padding: 15px; background: #ffffff; color: #374151 !important; font-weight: 600; border-radius: 12px; text-decoration: none; border: 1px solid #e5e7eb;">
                         <span style="font-size: 20px; margin-left: 12px;">💼</span>
@@ -476,6 +484,120 @@
                 <div class="relative">
                     <div class="w-80 h-80 bg-gradient-to-br from-blue-400 to-blue-600 rounded-full opacity-10"></div>
                     <div class="absolute top-10 left-10 w-60 h-60 bg-gradient-to-br from-white to-blue-100 rounded-full opacity-15"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- סרטון הסבר -->
+    <section class="py-16 bg-gradient-to-br from-purple-50 to-pink-50 scroll-reveal" id="video">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <div class="custom-icon text-3xl mb-4 mx-auto" style="background: linear-gradient(135deg, #8b5cf6, #ec4899);">
+                    <i class="fas fa-play-circle"></i>
+                </div>
+                <h2 class="text-3xl font-bold text-blue-900 mb-4">איך עובד ניכיון שיקים?</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">צפו בסרטון האנימציה שלנו ולמדו כיצד ניכיון שיקים יכול לעזור לכם לקבל כסף מיידי</p>
+            </div>
+            
+            <div class="max-w-5xl mx-auto">
+                <div class="bg-white rounded-2xl shadow-2xl overflow-hidden">
+                    <!-- Video Container -->
+                    <div style="position: relative; width: 100%; height: 600px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
+                        <div style="position: absolute; top: 0; left: 0; width: 100%; height: 5px; background: #1e40af; transition: width 1s ease;" id="videoProgressBar"></div>
+                        
+                        <div style="position: absolute; top: 20px; right: 20px; background: #1e40af; color: white; padding: 10px 15px; border-radius: 10px; font-weight: bold; font-size: 1.1rem;">
+                            קבוצת חן למימון
+                        </div>
+                        
+                        <button style="position: absolute; top: 20px; left: 20px; background: #059669; color: white; border: none; padding: 8px 12px; border-radius: 5px; cursor: pointer; font-size: 0.8rem;" id="videoAutoPlayBtn" onclick="toggleVideoAutoPlay()">⏸️ עצור</button>
+
+                        <!-- Scene 1: Introduction -->
+                        <div class="video-scene active" id="videoScene1" style="position: absolute; width: 100%; height: 100%; display: flex; flex-direction: column; justify-content: center; align-items: center; opacity: 1; transform: translateX(0); transition: all 1s ease-in-out;">
+                            <div style="font-size: 2.5rem; font-weight: bold; color: white; text-align: center; margin-bottom: 30px; text-shadow: 2px 2px 4px rgba(0,0,0,0.3);">ניכיון שיקים מסחריים</div>
+                            <div style="font-size: 1.2rem; color: white; text-align: center; margin-bottom: 40px; max-width: 600px; line-height: 1.6; opacity: 0.9;">הפתרון המהיר להמרת שיקים דחויים למזומן מיידי</div>
+                            <div style="width: 300px; height: 150px; background: linear-gradient(45deg, #e0f2fe, #b3e5fc); border: 3px solid #0288d1; border-radius: 10px; position: relative; margin: 20px; box-shadow: 0 8px 20px rgba(0,0,0,0.2); animation: float 3s ease-in-out infinite;">
+                                <div style="padding: 20px; text-align: right; direction: rtl;">
+                                    <div style="font-size: 1.8rem; font-weight: bold; color: #0288d1; margin-bottom: 10px;">₪50,000</div>
+                                    <div style="font-size: 1rem; color: #546e7a; margin-bottom: 10px;">תאריך פירעון: 15/08/2025</div>
+                                    <div style="font-size: 0.9rem; color: #37474f;">חברת ABC בע"מ</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Scene 2: The Problem -->
+                        <div class="video-scene" id="videoScene2" style="position: absolute; width: 100%; height: 100%; display: flex; flex-direction: column; justify-content: center; align-items: center; opacity: 0; transform: translateX(100px); transition: all 1s ease-in-out;">
+                            <div style="font-size: 2.5rem; font-weight: bold; color: white; text-align: center; margin-bottom: 30px;">❓ הבעיה</div>
+                            <div style="font-size: 1.2rem; color: white; text-align: center; margin-bottom: 40px; max-width: 600px; opacity: 0.9;">יש לכם שיק דחוי אבל אתם צריכים את הכסף עכשיו?</div>
+                            <div style="display: flex; align-items: center; gap: 30px; flex-wrap: wrap; justify-content: center;">
+                                <div style="width: 250px; height: 120px; background: linear-gradient(45deg, #e0f2fe, #b3e5fc); border: 3px solid #0288d1; border-radius: 10px; padding: 15px; text-align: right; direction: rtl;">
+                                    <div style="font-size: 1.5rem; font-weight: bold; color: #0288d1;">₪50,000</div>
+                                    <div style="color: #546e7a;">פירעון בעוד חודשיים</div>
+                                    <div style="color: #d32f2f;">💰 כסף "תקוע"</div>
+                                </div>
+                                <div style="font-size: 3rem;">⏰</div>
+                                <div style="text-align: center; color: white;">
+                                    <div style="font-size: 2rem; color: #ff5252;">❌</div>
+                                    <div style="font-size: 1.2rem;">אין מזומן מיידי</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Scene 3: The Solution -->
+                        <div class="video-scene" id="videoScene3" style="position: absolute; width: 100%; height: 100%; display: flex; flex-direction: column; justify-content: center; align-items: center; opacity: 0; transform: translateX(100px); transition: all 1s ease-in-out;">
+                            <div style="font-size: 2.5rem; font-weight: bold; color: white; text-align: center; margin-bottom: 30px;">💡 הפתרון</div>
+                            <div style="font-size: 1.2rem; color: white; text-align: center; margin-bottom: 40px; max-width: 600px; opacity: 0.9;">קבוצת חן למימון - נרכוש את השיק ונעביר לכם כסף מיידי</div>
+                            <div style="display: flex; align-items: center; gap: 30px; flex-wrap: wrap; justify-content: center;">
+                                <div style="width: 250px; height: 120px; background: linear-gradient(45deg, #e0f2fe, #b3e5fc); border: 3px solid #0288d1; border-radius: 10px; padding: 15px; text-align: right;">
+                                    <div style="font-size: 1.5rem; font-weight: bold; color: #0288d1;">₪50,000</div>
+                                    <div style="color: #546e7a;">שיק דחוי</div>
+                                </div>
+                                <div style="font-size: 3rem; color: #f59e0b; animation: bounce 2s infinite;">➡️</div>
+                                <div style="display: flex; flex-direction: column;">
+                                    <div style="width: 150px; height: 30px; background: linear-gradient(45deg, #4caf50, #66bb6a); border: 2px solid #2e7d32; border-radius: 5px; margin: 2px; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold;">₪12,000</div>
+                                    <div style="width: 150px; height: 30px; background: linear-gradient(45deg, #4caf50, #66bb6a); border: 2px solid #2e7d32; border-radius: 5px; margin: 2px; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold;">₪12,000</div>
+                                    <div style="width: 150px; height: 30px; background: linear-gradient(45deg, #4caf50, #66bb6a); border: 2px solid #2e7d32; border-radius: 5px; margin: 2px; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold;">₪12,000</div>
+                                    <div style="width: 150px; height: 30px; background: linear-gradient(45deg, #4caf50, #66bb6a); border: 2px solid #2e7d32; border-radius: 5px; margin: 2px; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold;">₪11,000</div>
+                                </div>
+                            </div>
+                            <div style="margin-top: 20px; color: #4ade80; font-weight: bold; font-size: 1.5rem; text-shadow: 1px 1px 2px rgba(0,0,0,0.3);">
+                                ₪47,000 מיידי בחשבון שלכם!
+                            </div>
+                        </div>
+
+                        <!-- Navigation -->
+                        <div style="position: absolute; bottom: 20px; left: 50%; transform: translateX(-50%); display: flex; gap: 10px;">
+                            <button style="padding: 10px 20px; background: #1e40af; color: white; border: none; border-radius: 25px; cursor: pointer; font-weight: bold; transition: all 0.3s ease;" id="videoPrevBtn" onclick="changeVideoScene(-1)">← הקודם</button>
+                            <button style="padding: 10px 20px; background: #1e40af; color: white; border: none; border-radius: 25px; cursor: pointer; font-weight: bold; transition: all 0.3s ease;" id="videoNextBtn" onclick="changeVideoScene(1)">הבא →</button>
+                        </div>
+                    </div>
+                    
+                    <!-- Video Description -->
+                    <div class="p-6 bg-gray-50">
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                            <div class="text-center">
+                                <div class="custom-icon text-2xl mb-3 mx-auto">
+                                    <i class="fas fa-play"></i>
+                                </div>
+                                <h4 class="font-bold text-blue-900 mb-2">ניגון אוטומטי</h4>
+                                <p class="text-sm text-gray-600">הסרטון מתנגן אוטומטי או ניתן לשלוט ידנית</p>
+                            </div>
+                            <div class="text-center">
+                                <div class="custom-icon text-2xl mb-3 mx-auto" style="background: linear-gradient(135deg, #10b981, #059669);">
+                                    <i class="fas fa-clock"></i>
+                                </div>
+                                <h4 class="font-bold text-blue-900 mb-2">3 דקות</h4>
+                                <p class="text-sm text-gray-600">הסבר מהיר ובהיר של כל התהליך</p>
+                            </div>
+                            <div class="text-center">
+                                <div class="custom-icon text-2xl mb-3 mx-auto" style="background: linear-gradient(135deg, #8b5cf6, #7c3aed);">
+                                    <i class="fas fa-language"></i>
+                                </div>
+                                <h4 class="font-bold text-blue-900 mb-2">בעברית</h4>
+                                <p class="text-sm text-gray-600">תוכן מותאם לשוק הישראלי</p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -1404,6 +1526,7 @@
                     <h3 class="text-lg font-bold mb-4">קישורים מהירים</h3>
                     <ul class="space-y-2">
                         <li><a class="text-gray-400 hover:text-white transition-colors" href="#home">בית</a></li>
+                        <li><a class="text-gray-400 hover:text-white transition-colors" href="#video">סרטון הסבר</a></li>
                         <li><a class="text-gray-400 hover:text-white transition-colors" href="#services">שירותים</a></li>
                         <li><a class="text-gray-400 hover:text-white transition-colors" href="#check-guide">מדריך שיקים</a></li>
                         <li><a class="text-gray-400 hover:text-white transition-colors" href="#legal">מידע חוקי</a></li>
@@ -1692,7 +1815,82 @@
             });
         }
         
-        // הפעלת כל הפונקציות
+        // Video functionality
+        let currentVideoScene = 1;
+        const totalVideoScenes = 3;
+        let videoAutoPlay = true;
+        let videoAutoPlayInterval;
+
+        function updateVideoProgress() {
+            const progress = (currentVideoScene / totalVideoScenes) * 100;
+            const progressBar = document.getElementById('videoProgressBar');
+            if (progressBar) {
+                progressBar.style.width = progress + '%';
+            }
+        }
+
+        function showVideoScene(sceneNumber) {
+            // Hide all scenes
+            for (let i = 1; i <= totalVideoScenes; i++) {
+                const scene = document.getElementById('videoScene' + i);
+                if (scene) {
+                    scene.classList.remove('active', 'exit');
+                    if (i === sceneNumber) {
+                        scene.classList.add('active');
+                    } else if (i < sceneNumber) {
+                        scene.classList.add('exit');
+                    }
+                }
+            }
+
+            // Update navigation
+            const prevBtn = document.getElementById('videoPrevBtn');
+            const nextBtn = document.getElementById('videoNextBtn');
+            if (prevBtn) prevBtn.disabled = sceneNumber === 1;
+            if (nextBtn) nextBtn.disabled = sceneNumber === totalVideoScenes;
+            
+            updateVideoProgress();
+        }
+
+        function changeVideoScene(direction) {
+            const newScene = currentVideoScene + direction;
+            if (newScene >= 1 && newScene <= totalVideoScenes) {
+                currentVideoScene = newScene;
+                showVideoScene(currentVideoScene);
+            }
+        }
+
+        function startVideoAutoPlay() {
+            videoAutoPlayInterval = setInterval(() => {
+                if (currentVideoScene < totalVideoScenes) {
+                    changeVideoScene(1);
+                } else {
+                    currentVideoScene = 1;
+                    showVideoScene(currentVideoScene);
+                }
+            }, 4000);
+        }
+
+        function stopVideoAutoPlay() {
+            clearInterval(videoAutoPlayInterval);
+        }
+
+        function toggleVideoAutoPlay() {
+            const btn = document.getElementById('videoAutoPlayBtn');
+            if (videoAutoPlay) {
+                stopVideoAutoPlay();
+                if (btn) btn.textContent = '▶️ נגן';
+                videoAutoPlay = false;
+            } else {
+                startVideoAutoPlay();
+                if (btn) btn.textContent = '⏸️ עצור';
+                videoAutoPlay = true;
+            }
+        }
+
+        // Add video functions to global scope
+        window.changeVideoScene = changeVideoScene;
+        window.toggleVideoAutoPlay = toggleVideoAutoPlay;
         document.addEventListener('DOMContentLoaded', function() {
             initMobileMenu();
             initAccessibility();
